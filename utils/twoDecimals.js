@@ -1,0 +1,1 @@
+export const twoDecimals = (num) => +num.toFixed(2)
