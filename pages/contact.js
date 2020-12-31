@@ -1,5 +1,5 @@
 import {Box, Text } from "rebass";
-import {Input, Label} from '@rebass/forms'
+import {input, Label} from '@rebass/forms'
 export function Contact() {
     return (
         <Box>
@@ -10,14 +10,14 @@ export function Contact() {
                    Your Name
                </Label>
 
-               <Input width={['50%','25%']} />
+               <input width={['50%','25%']} />
            </Box>
            <Box my={3}>
                <Label fontSize={3}>
                   Your Email
                </Label>
 
-               <Input placeholder="contact@cmmnd.com" width={['50%','25%']} />
+               <input placeholder="contact@cmmnd.com" width={['50%','25%']} />
            </Box>
            <Box>
                <Label fontSize={3}>

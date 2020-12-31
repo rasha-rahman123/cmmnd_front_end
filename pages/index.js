@@ -5,7 +5,7 @@ import { Canvas, useFrame, useThree, extend, useLoader } from "react-three-fiber
 import Inter from "../public/Inter_Regular.json";
 import * as THREE from "three";
 import { Suspense, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { Input, Label } from "@rebass/forms";
+import { input, Label } from "@rebass/forms";
 import { Box, Button, Image } from "rebass";
 import Router from "next/router";
 import { ClampToEdgeWrapping, LinearFilter, TextureLoader } from "three";
@@ -218,7 +218,7 @@ export default function Home({ products }) {
             authSiteEnter();
           }}
         >
-          <Input
+          <input
             ref={inputRef}
             sx={{
               py: 2,

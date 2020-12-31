@@ -145,7 +145,7 @@ const Layout = ({ children }) => {
             loginUser(email);
           }}
         >
-          <Input
+          <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email Address"
