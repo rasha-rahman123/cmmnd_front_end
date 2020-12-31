@@ -35,14 +35,7 @@ function Bird({ factor = 2, i, swag, ...props }) {
   const group = useRef();
   const [col, setCol] = useState(props.color);
   const texture = useLoader(TextureLoader, pics[i%3]);
-  const video = document.createElement( 'video' );
-  video.src = "/da.mp4";
-  video.load(); // must call after setting/changing source
-  video.muted = true;
-  video.play();
-  
-  const videoTexture = new THREE.VideoTexture( video );
-  
+ 
   
   useMemo(() => {
     texture.generateMipmaps = false
@@ -74,7 +67,7 @@ function Bird({ factor = 2, i, swag, ...props }) {
           />
           <meshBasicMaterial
             attach="material"
-            map={ i > 0 ? texture : videoTexture}
+            map={ i > 0 ? texture : texture}
           
     
             roughness={0.9}
