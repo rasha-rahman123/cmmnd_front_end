@@ -1,18 +1,12 @@
 import Head from "next/head";
 import { Box, Button, Image, Text } from "rebass";
-import BuyButton from "../../components/BuyButton";
-import Layout from "../../components/Layout";
 import Modal from "react-modal";
-import { twoDecimals } from "../../utils/twoDecimals";
-import { API_URL, fromImageToUrl } from "../../utils/urls";
+
 import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../context/AuthContext";
-import { Input, Label, Select } from "@rebass/forms";
+
+
 import { useRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
-import Script from "react-load-script";
-import VariantSelector from "../../components/VariantSelector";
-import Cart from "../../components/Cart";
+
 import { ShopContext } from "../../context/ShopContext";
 
 const customStyles = {
