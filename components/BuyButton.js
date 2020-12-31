@@ -5,7 +5,6 @@ import {loadStripe} from '@stripe/stripe-js'
 import { Button } from "rebass"
 import AuthContext from "../context/AuthContext"
 import { STRIKE_PK,API_URL } from "../utils/urls"
-import axios from 'axios'
 const stripePromise =  loadStripe(STRIKE_PK)
 
 export default function BuyButton({product, address,size, quantity}) {
