@@ -1,13 +1,11 @@
-import { Label } from "@rebass/forms";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { Box, Text, Button, Image } from "rebass";
-import AuthContext from "../context/AuthContext";
+
 import Modal from "react-modal";
 
-import { Form, Input } from "@rebass/forms";
-import { API_URL } from "../utils/urls";
 import { parseCookies } from "nookies";
 import { ShopContext } from "../context/ShopContext";
 import Cart from "./Cart";
