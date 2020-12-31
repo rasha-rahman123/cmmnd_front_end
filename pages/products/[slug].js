@@ -165,7 +165,7 @@ const Product = ({ client }, props) => {
                 Size:{" "}
               </Text>
               {/* <Box> {variantSelectors}</Box> */}
-              <Box width={200}> <Select
+              <Box width={200}> <select
     id='country'
     name='country'
     fontSize={2}
@@ -177,7 +177,7 @@ const Product = ({ client }, props) => {
         {x.title}
       </option>
     ))}
-  </Select></Box>
+  </select></Box>
             </Box>
             <Box
               sx={{
