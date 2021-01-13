@@ -1,6 +1,6 @@
 /* INITIALIZERS + DEFAULTS
  * ============================== */
- @import url('https://fonts.googleapis.com/css?family=Lekton:300,400,700');
+ @import url('https://fonts.googleapis.com/css?family=Lekton:300,400,700,900');
 
  *, *:before, *:after {
    box-sizing: border-box;
@@ -14,7 +14,6 @@
  body {
    margin: 0;
    padding: 0;
-   font-family: 'Lekton', sans-serif;
    font-weight: 400;
    cursor: url('/cursor.png')
  }
@@ -23,6 +22,19 @@
   cursor: url('/cursor.png')
  }
  
+ a, h1 { 
+   color: black;
+   font-family: 'Arial';
+ }
+
+ h2, p, input, label  { 
+   color: black;
+  font-family: 'Lekton', sans-serif;
+ }
+
+ p, input, label { 
+  font-size: 1.5rem;
+ }
  
  img {
    display: block;
@@ -37,9 +49,13 @@
  }
  
  h2 {
-   font-weight: 300;
+   font-weight: 700;
    margin: 0;
-   font-size: 2rem;
+   font-size: 1.5rem;
+ }
+
+ a { 
+   text-decoration: none;
  }
  
  /* BASE APP
@@ -485,4 +501,54 @@
    background: #fbefee;
    color: #c23628;
  }
- 
+
+ /* pages */
+
+.main-container { 
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-nav { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 80px 0px;
+  max-height: 100px;
+}
+
+.sub-nav { 
+  margin: 25px 0px;
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  justify-content: space-evenly;
+}
+
+ /* stickerform page */
+ .sticker-form { 
+   width: 500px;
+   height: 500px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+ }
+
+ .sticker-form input { 
+   max-width: 200px;
+   border: 0px;
+ }
+
+ .sticker-form input[type=submit] { 
+   align-self: center;
+   text-decoration: underline;
+   background: none;
+ }
+
+ .stickerform-container {
+   margin-top: 4rem;
+   width: 500px;
+ }
