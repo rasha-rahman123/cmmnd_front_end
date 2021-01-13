@@ -15,19 +15,22 @@ const Layout = ({ children }) => {
     const query = router.query.pw || '';
 
     const navi = [
-        // { text: "Shop", link: "/shop?pw=" + query },
-        { text: "about", link: "/about" + query },
-        { text: "sticker form", link: "/stickerform" + query },
-        { text: "contact", link: "/contact" + query },
-        { text: "archive", link: "/archive" + query },
+        { text: "Home", link: "/" + query},
+        { text: "Shop", link: "/shop" + query, under_construction: true },
+        { text: "Archive", link: "/archive" + query, under_construction: true },
+        { text: "About", link: "/about" + query },
+        { text: "Contact", link: "mailto:contact@cmmnd.com" + query },
+        { text: "Stickers", link: "/stickerform" + query },
       ];
 
         const nav = navi.map((page) => ( 
-            <Link href={page.link}>
+            page.under_construction ? 
+            <h2><strike>{page.text}</strike></h2>
+            : <Link href={page.link}>
                 <a>
                 <h2>{page.text}</h2>
                 </a>
-            </Link>
+            </Link> 
         ))
 
     // check for passwords
@@ -35,7 +38,7 @@ const Layout = ({ children }) => {
             <div className="main-nav">
                 <div className="home-icon">
                     <Link href="/">
-                        <Image src='/llll.png' width={200} sx={{filter: 'invert()', transition: 'all 300ms ease',":hover": {transform: 'scale(1.05)'}}}/>
+                        <Image src='/cmmnd_logo.png' width={150}/>
                     </Link>
                 </div>
                 <div className="sub-nav">{nav}</div> 

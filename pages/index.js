@@ -79,7 +79,7 @@ function Bird({ factor = 2, i, swag, ...props }) {
   );
 }
 function Birds() {
-  return new Array(9).fill().map((_, i) => {
+return new Array(9).fill().map((_, i) => {
 
     const y = -6;
 

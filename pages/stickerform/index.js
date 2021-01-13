@@ -91,7 +91,7 @@ function StickerForm() {
     
     const stickerPage = () => ( 
         <div class="stickerform-container">
-            <h2>Free Sticker Form</h2>
+            <h3>Free Sticker Form</h3>
             {submitted ? submittedMessage() : form()}
         </div>
     )

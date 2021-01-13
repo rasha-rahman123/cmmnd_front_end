@@ -22,12 +22,12 @@
   cursor: url('/cursor.png')
  }
  
- a, h1 { 
+ a { 
    color: black;
    font-family: 'Arial';
  }
 
- h2, p, input, label  { 
+ h1, h2, h3, p, input, label  { 
    color: black;
   font-family: 'Lekton', sans-serif;
  }
@@ -43,16 +43,23 @@
  }
  
  h1 {
-   font-weight: 300;
+   font-weight: 400;
    margin: 0 0 15px;
-   font-size: 3rem;
+   font-size: 4rem;
  }
  
  h2 {
    font-weight: 700;
    margin: 0;
-   font-size: 1.5rem;
+   font-size: 1.8rem;
  }
+
+ h3 {
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
 
  a { 
    text-decoration: none;
@@ -514,10 +521,17 @@
 .main-nav { 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  margin: 80px 0px;
+  justify-content: left;
+  /* justify-content: space-between; */
+  /* flex-direction: column; */
+  width: 65%;
+  margin-top: 100px;
   max-height: 100px;
+}
+
+.home-icon { 
+  margin-right: 15%;
+  padding-bottom: 80px;
 }
 
 .sub-nav { 
@@ -531,7 +545,7 @@
  /* stickerform page */
  .sticker-form { 
    width: 500px;
-   height: 500px;
+   height: 400px;
    display: flex;
    flex-direction: column;
    justify-content: space-evenly;
@@ -546,9 +560,27 @@
    align-self: center;
    text-decoration: underline;
    background: none;
+   font-weight: 700;
+   margin-top: 20px;
  }
 
  .stickerform-container {
-   margin-top: 4rem;
-   width: 500px;
+   margin-top: 5rem;
+   width: 480px;
  }
+
+ /* about page */
+ .about-container { 
+  margin-top: 5rem;
+   width: 800px;
+   display: flex;
+ }
+
+ .about-description { 
+   margin-left: 20px;
+   width: 350px;
+ }
+
+ .about-description h3 { 
+  font-size: 5rem;
+}
