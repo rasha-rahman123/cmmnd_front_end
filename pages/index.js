@@ -42,16 +42,16 @@ function Bird({ factor = 2, i, swag, ...props }) {
     texture.wrapS = texture.wrapT = ClampToEdgeWrapping
     texture.minFilter = LinearFilter
     texture.needsUpdate = true
-    videoTexture.magFilter = LinearFilter
-    videoTexture.minFilter = LinearFilter
+    // videoTexture.magFilter = LinearFilter
+    // videoTexture.minFilter = LinearFilter
   }, [
     texture.generateMipmaps,
     texture.wrapS,
     texture.wrapT,
     texture.minFilter,
     texture.needsUpdate,
-    videoTexture.magFilter,
-    videoTexture.minFilter
+    // videoTexture.magFilter,
+    // videoTexture.minFilter
   ])
 
 
@@ -79,7 +79,7 @@ function Bird({ factor = 2, i, swag, ...props }) {
   );
 }
 function Birds() {
-  return new Array(9).fill().map((_, i) => {
+return new Array(9).fill().map((_, i) => {
 
     const y = -6;
 

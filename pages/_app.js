@@ -10,8 +10,6 @@ import ShopProvider, { ShopContext } from "../context/ShopContext";
 function MyApp({ Component, pageProps, articles}) {
   
 
-
-
   return (
     <ShopProvider>
       <ThemeProvider theme={theme}>
