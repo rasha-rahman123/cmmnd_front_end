@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import Image from "next/image"
+import {Image} from "rebass";
 import { parseCookies } from "nookies";
 import { ShopContext } from "../context/ShopContext";
 import Cart from "./Cart";
@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
             <div className="main-nav">
                 <div className="home-icon">
                     <Link href="/">
-                        <Image src='/cmmnd_logo.png' layout="intrinsic"  height={150} width={150}/>
+                        <Image src='/cmmnd_logo.png' width={150}/>
                     </Link>
                 </div>
                 <div className="sub-nav">{nav}</div> 
