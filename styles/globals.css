@@ -1,6 +1,6 @@
 /* INITIALIZERS + DEFAULTS
  * ============================== */
- @import url('https://fonts.googleapis.com/css?family=Lekton:300,400,700');
+ @import url('https://fonts.googleapis.com/css?family=Lekton:300,400,700,900');
 
  *, *:before, *:after {
    box-sizing: border-box;
@@ -14,7 +14,6 @@
  body {
    margin: 0;
    padding: 0;
-   font-family: 'Lekton', sans-serif;
    font-weight: 400;
    cursor: url('/cursor.png')
  }
@@ -23,6 +22,19 @@
   cursor: url('/cursor.png')
  }
  
+ a { 
+   color: black;
+   font-family: 'Arial';
+ }
+
+ h1, h2, h3, p, input, label  { 
+   color: black;
+  font-family: 'Lekton', sans-serif;
+ }
+
+ p, input, label { 
+  font-size: 1.5rem;
+ }
  
  img {
    display: block;
@@ -31,15 +43,26 @@
  }
  
  h1 {
-   font-weight: 300;
+   font-weight: 400;
    margin: 0 0 15px;
-   font-size: 3rem;
+   font-size: 4rem;
  }
  
  h2 {
-   font-weight: 300;
+   font-weight: 700;
    margin: 0;
-   font-size: 2rem;
+   font-size: 1.8rem;
+ }
+
+ h3 {
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+
+ a { 
+   text-decoration: none;
  }
  
  /* BASE APP
@@ -485,4 +508,138 @@
    background: #fbefee;
    color: #c23628;
  }
- 
+
+ /* pages */
+
+.main-container { 
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-nav { 
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 65%;
+  margin-top: 100px;
+  max-height: 100px;
+}
+
+.home-icon { 
+  margin-right: 15%;
+  padding-bottom: 80px;
+}
+
+.sub-nav { 
+  margin: 25px 0px;
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  justify-content: space-evenly;
+}
+
+ /* stickerform page */
+ .sticker-form { 
+   max-width: 500px;
+   height: 400px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+ }
+
+ .sticker-form input { 
+   max-width: 200px;
+   border: 0px;
+ }
+
+ .sticker-form input[type=submit] { 
+   align-self: center;
+   text-decoration: underline;
+   background: none;
+   font-weight: 700;
+   margin-top: 20px;
+ }
+
+ .stickerform-container {
+   margin-top: 5rem;
+   width: 480px;
+ }
+
+ /* about page */
+ .about-container { 
+  margin-top: 5rem;
+   width: 800px;
+   display: flex;
+ }
+
+ .about-description { 
+   margin-left: 20px;
+   width: 350px;
+ }
+
+ .about-description h3 { 
+  font-size: 6rem;
+}
+
+
+@media only screen and (max-width: 1025px) {
+  .home-icon { 
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  .main-nav { 
+    margin-top: 4rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .about-container { 
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-description { 
+    margin: 25px ;
+    width: 400px;
+  }
+
+  .main-nav { 
+    width: 100%;
+  }
+
+  .sub-nav{ 
+    width: 250px;
+    flex-wrap: wrap;
+  }
+
+  .home-icon { 
+    width: 100px;
+  }
+  .sub-nav h2 { 
+    margin: 8px 10px;
+  }
+
+  .stickerform-container {
+    margin-top: 5rem;
+    width: 80%;
+  }
+}
+
+
+@media only screen and (min-width: 441px) and (max-width: 768px) { 
+  .main-nav { 
+    justify-content: center;
+    padding-right: 90px;
+  }
+}
+
+@media only screen and (max-width: 441px) {
+  .about-description { 
+    margin: 25px ;
+    width: 320px;
+  }
+
+} 
