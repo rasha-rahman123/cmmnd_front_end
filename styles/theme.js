@@ -47,7 +47,22 @@ export default {
           bg: '#00000060'
         }
       },
-  
- 
+
+      secondary: {
+        color: 'primary',
+        fontStyle: 'italic',
+        bg: '#FFFFFF00',
+        cursor: 'pointer',
+        width: 150,
+        height: '2rem',
+        alignSelf: 'center',
+        borderRadius: 0,
+        textDecoration: 'underline',
+        ":hover": {
+          textDecoration: 'none'
+        }
+      }
+
+
     }
   }
