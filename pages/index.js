@@ -6,11 +6,9 @@ import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { input, Label } from "@rebass/forms";
 import { Box, Button, Image } from "rebass";
 import Router from "next/router";
-import Scene from './Scene.js';
+import Scene from '../components/Scene.js';
 
 const pics = ['https://i.imgur.com/rHMyAH9.jpg','https://i.imgur.com/iaD8oK0.jpg','https://i.imgur.com/3T2VBtX.jpg','https://i.imgur.com/rv9FbOD.jpg']
-
-
 
 
 //figure out how to disable nav menu and border
