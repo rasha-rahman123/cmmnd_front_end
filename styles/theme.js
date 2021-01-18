@@ -34,6 +34,7 @@ export default {
     variants: {
     },
     text: {
+      color: 'primary'
     },
     buttons: {
       primary: {
