@@ -23,14 +23,14 @@ const Layout = ({ children }) => {
         { text: "Stickers", link: "/stickerform" + query },
       ];
 
-        const nav = navi.map((page) => ( 
-            page.under_construction ? 
+        const nav = navi.map((page) => (
+            page.under_construction ?
             <h2><strike>{page.text}</strike></h2>
             : <Link href={page.link}>
                 <a>
                 <h2>{page.text}</h2>
                 </a>
-            </Link> 
+            </Link>
         ))
 
     // check for passwords
@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
                         <Image src='/cmmnd_logo.png' width={150}/>
                     </Link>
                 </div>
-                <div className="sub-nav">{nav}</div> 
+                <div className="sub-nav">{nav}</div>
             </div>
             {children}
         </div>;

@@ -47,7 +47,7 @@ function StickerForm() {
     )
 
     const form = () => ( 
-        <form onSubmit={handleSubmit} class="sticker-form">
+        <form onSubmit={handleSubmit} className="sticker-form">
             <div>
             <label>Name:</label>
             <input name="name" value={values.name} onChange={handleInputChange} type="text" required/>
