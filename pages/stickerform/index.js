@@ -43,7 +43,7 @@ function StickerForm() {
     }
 
     const submittedMessage = () => ( 
-        <p>Thanks for your submission.</p>
+        <h3 className="submitted-message">Thanks for your submission.</h3>
     )
 
     const form = () => ( 
@@ -85,14 +85,14 @@ function StickerForm() {
             <input name="phone_number" value={values.phone_number} onChange={handleInputChange} type="number" required/>
             </div>
 
-            <input type="submit"/>
+            {submitted ? submittedMessage() : <input type="submit"/>}
         </form>
     )
     
     const stickerPage = () => ( 
         <div class="stickerform-container">
             <h3>Free Sticker Form</h3>
-            {submitted ? submittedMessage() : form()}
+            {form()}
         </div>
     )
     

@@ -3,15 +3,16 @@ import { Canvas } from "react-three-fiber";
 import styles from "../styles/Home.module.css";
 import Inter from "../public/Inter_Regular.json";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { input, Label } from "@rebass/forms";
+import { Input, Label } from "@rebass/forms";
 import { Box, Button, Image } from "rebass";
-import Router from "next/router";
+import { Router, useRouter } from "next/router";
+import Link from "next/link";
 import Scene from '../components/Scene.js';
+import TopNav from '../components/TopNav.js';
 
 const pics = ['https://i.imgur.com/rHMyAH9.jpg','https://i.imgur.com/iaD8oK0.jpg','https://i.imgur.com/3T2VBtX.jpg','https://i.imgur.com/rv9FbOD.jpg']
 
 
-//figure out how to disable nav menu and border
 export default function Home({ products }) {
 
   const mesh = useRef(null);
@@ -39,6 +40,10 @@ export default function Home({ products }) {
     loginstuff();
   };
 
+  const router = useRouter();
+  const query = router.query.pw || '';
+
+//zIndex: 0
   return (
     <div className={styles.container} style={{cursor: `url('/cursor.png')`}}>
       <Head>
@@ -54,11 +59,11 @@ export default function Home({ products }) {
           left: 0,
           height: "100vh",
           width: "100%",
-          zIndex: -2,
+
           background: "white"
         }}
       >
-      <Scene />
+        <Scene />
       </Canvas>
       <Box
         sx={{
@@ -69,9 +74,8 @@ export default function Home({ products }) {
           left: 0,
           width: "100%",
           justifyContent: "center",
-          bottom: "150px",
+          bottom: showPass ? "50vh" : "40vh",
           transition: "all 400ms ease-in-out 100ms",
-          transform: showPass ? "translateY(-50px)" : "translateY(0px)",
         }}
       >
         <Button
@@ -79,39 +83,54 @@ export default function Home({ products }) {
           sx={{ mb: 2, fontFamily: "Lekton", fontSize: 4, height: 30, border: 0 }}
           onClick={() => (showPass ? authSiteEnter() : setShowPass(true))}
         >
-          Enter
+          ENTER
         </Button>
         <form
+          sx={{
+            position: "fixed",
+            bottom: "-50px",
+          }}
           onSubmit={(e) => {
             e.preventDefault();
             authSiteEnter();
           }}
         >
-          <input
+          <Input
             ref={inputRef}
             sx={{
               py: 2,
-              background: "black",
+              background: "#00000015",
               color: "white",
               border: "none",
               outline: "none",
               textAlign: "center",
               fontSize: 24,
-              opacity: showPass ? 1 : 0,
               transition: "all 300ms ease 500ms",
               borderRadius: 15,
-              alignSelf: "center",
               margin: "0 auto",
+              position: "relative",
+              bottom: showPass ? "-2vh" : "-3vh",
+              opacity: showPass? 1 : 0,
               fontFamily: "Lekton",
               width: "50%",
             }}
             value={password}
             type="password"
-            placeholder="Enter Password"
+            placeholder="Password?"
             onChange={(e) => setPassword(e.target.value)}
           />
         </form>
         {alert && <Label>Incorrect Password</Label>}
+        <Box className="sub-nav"
+        sx={{
+          transition: "all 300ms ease 500ms",
+          margin: "0 auto",
+          position: "relative",
+          bottom: showPass ? "-5vh" : "-6vh",
+          opacity: showPass? 1 : 0
+        }}>
+          <TopNav splash={true}></TopNav>
+        </Box>
       </Box>
     </div>
   );
