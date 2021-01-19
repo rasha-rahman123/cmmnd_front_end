@@ -8,7 +8,7 @@ import { Box, Button, Image } from "rebass";
 import { Router, useRouter } from "next/router";
 import Link from "next/link";
 import Scene from '../components/Scene.js';
-import Layout from '../components/Layout.js';
+import TopNav from '../components/TopNav.js';
 
 const pics = ['https://i.imgur.com/rHMyAH9.jpg','https://i.imgur.com/iaD8oK0.jpg','https://i.imgur.com/3T2VBtX.jpg','https://i.imgur.com/rv9FbOD.jpg']
 
@@ -43,26 +43,6 @@ export default function Home({ products }) {
   const router = useRouter();
   const query = router.query.pw || '';
 
-  //subnav copy pasted from Layout
-  const navi = [
-      { text: "Home", link: "/" + query},
-      { text: "Shop", link: "/shop" + query, under_construction: true },
-      { text: "Archive", link: "/archive" + query, under_construction: true },
-      { text: "About", link: "/about" + query },
-      { text: "Contact", link: "mailto:contact@cmmnd.com" + query },
-      { text: "Stickers", link: "/stickerform" + query },
-    ];
-
-  const nav = navi.map((page) => (
-      page.under_construction ?
-      <h2><strike>{page.text}</strike></h2>
-      : <Link href={page.link}>
-          <a>
-          <h2>{page.text}</h2>
-          </a>
-      </Link>
-  ))
-
 //zIndex: 0
   return (
     <div className={styles.container} style={{cursor: `url('/cursor.png')`}}>
@@ -74,12 +54,12 @@ export default function Home({ products }) {
         gl={{ alpha: false }}
         camera={{ position: [0, 0, 7], fov: 50, }}
         style={{
-          position: "absolute",
-          top: 0,
+          position: "fixed",
+          overflow: "hidden",
+          bottom: 0,
           left: 0,
           height: "100vh",
           width: "100%",
-
           background: "white"
         }}
       >
@@ -87,15 +67,15 @@ export default function Home({ products }) {
       </Canvas>
       <Box
         sx={{
-          position: "absolute",
+          position: "fixed",
           display: "flex",
           flexDirection: "column",
           margin: "auto auto",
           left: 0,
           width: "100%",
           justifyContent: "center",
-          bottom: showPass ? "50vh" : "40vh",
-          transition: "all 400ms ease-in-out 100ms",
+          top: showPass ? ["30vh", "35vh", "40vh"] : ["40vh", "45vh", "50vh"],
+          transition: "all 400ms ease 100ms",
         }}
       >
         <Button
@@ -105,52 +85,56 @@ export default function Home({ products }) {
         >
           ENTER
         </Button>
-        <form
-          sx={{
-            position: "fixed",
-            bottom: "-50px",
-          }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            authSiteEnter();
-          }}
-        >
-          <Input
-            ref={inputRef}
+
+        {showPass &&
+          <>
+            <form
+              sx={{
+                position: "fixed",
+                bottom: "-50px",
+              }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                authSiteEnter();
+              }}
+            >
+              <Input
+                ref={inputRef}
+                sx={{
+                  py: 2,
+                  background: "#00000015",
+                  color: "white",
+                  border: "none",
+                  outline: "none",
+                  textAlign: "center",
+                  fontSize: 24,
+                  transition: "all 300ms ease 500ms",
+                  margin: "0 auto",
+                  position: "relative",
+                  bottom: showPass ? "-2vh" : "-3vh",
+                  opacity: showPass? 1 : 0,
+                  fontFamily: "Lekton",
+                  width: ["50%", "40%", "30%"],
+                }}
+                value={password}
+                type="password"
+                placeholder="Password?"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </form>
+
+            <Box className="sub-nav"
             sx={{
-              py: 2,
-              background: "#00000015",
-              color: "white",
-              border: "none",
-              outline: "none",
-              textAlign: "center",
-              fontSize: 24,
               transition: "all 300ms ease 500ms",
-              borderRadius: 15,
               margin: "0 auto",
               position: "relative",
-              bottom: showPass ? "-2vh" : "-3vh",
-              opacity: showPass? 1 : 0,
-              fontFamily: "Lekton",
-              width: "50%",
-            }}
-            value={password}
-            type="password"
-            placeholder="Password?"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </form>
-        {alert && <Label>Incorrect Password</Label>}
-        <Box className="sub-nav"
-        sx={{
-          transition: "all 300ms ease 500ms",
-          margin: "0 auto",
-          position: "relative",
-          bottom: showPass ? "-5vh" : "-6vh",
-          opacity: showPass? 1 : 0
-        }}>
-          {nav}
-        </Box>
+              bottom: showPass ? "-5vh" : "-6vh",
+              opacity: showPass? 1 : 0
+            }}>
+              <TopNav splash={true}></TopNav>
+            </Box>
+          </>
+        }
       </Box>
     </div>
   );

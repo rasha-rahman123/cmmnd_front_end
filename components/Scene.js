@@ -51,86 +51,30 @@ function Letter({url, id, ...props}) {
         e.stopPropagation();
       }}
     >
-      <meshLambertMaterial attach="material" color="#32E8C4" />
+      <meshLambertMaterial attach="material" color={props.color}/>
     </mesh>
   )
 }
 
-//
-function AddLetter({addLetter}) {
-  //letter
-  const [letter, set] = useState();
-  //letter url
-  // const url = useRef('c');
-  //letter position
-  // const position = useRef();
-
-  //if collide, start a clock
-  //every half a second (clock.getDelta() % 0.5), create a letter and add it to all the other letters
-  //reset clock
-
-  // useFrame(state => {
-  //   if (state.clock.getDelta()==30) {
-  //
-  //   } else {
-  //     return;
-  //   }
-  //   //
-      //every 5 frames, create a letter
-      //randomize letter. 0 <= c < .2, .2 <= m < .6, .6 <= n <.8, .8 <= d < 1
-
-      //randomize position
-      // position = [Math.random()*4*(Math.random() < 0.5 ? -1 : 1), .5, 0];
-      //randomize color from color index
-  //   }
-  // );
-  clock.start();
-  //if collide, start a clock
-  //every half a second (clock.getDelta() % 0.5), create a letter and add it to letters array
-  //reset clock
-
-  //pass setLetters method down from Scene
-  return ((clock.getDelta() % 0.5) === 0) ? () => {
-    var url;
-    switch(true) {
-      case (Math.random() < 0.2):
-        url = 'c';
-        break;
-      case (Math.random() < 0.4):
-        url = 'n';
-        break;
-      case (Math.random() < 0.6):
-        url = 'd';
-        break;
-      default:
-        url = 'm';
-    }
-    const position = [Math.random()*4*(Math.random() < 0.5 ? -1 : 1), 3, 0];
-    const rotation = [Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0];
-    setLetters([...letters,
-    <Letter url={url} id={Math.random()} position={position} rotation={rotation} />])
-    clock.start();
-  } : null;
-}
-
-
-
 const Scene = () => {
-  const start = useRef(false);
+  // ------CHANGE CMMND COLORS HERE------
   const [letters, setLetters] = useState([
-    <Letter url="c"  id={Math.random()} position={[-1, 4, 0]}rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />,
-    <Letter url="m" id={Math.random()} position={[-.5, 4, 0]}  rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />,
-    <Letter url="m" id={Math.random()} position={[0, 4, 0]} rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />,
-    <Letter url="n" id={Math.random()} position={[.5, 4, 0]} rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />,
-    <Letter url="d" id={Math.random()} position={[1, 4, 0]} rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />
+    <Letter url="c"  id={Math.random()} color="#454746" position={[-1, 4, 0]} rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />,
+    <Letter url="m" id={Math.random()} color="#454746" position={[-.5, 4, 0]} rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />,
+    <Letter url="m" id={Math.random()} color="#454746" position={[0, 4, 0]} rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />,
+    <Letter url="n" id={Math.random()} color="#454746" position={[.5, 4, 0]} rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />,
+    <Letter url="d" id={Math.random()} color="#454746" position={[1, 4, 0]} rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />
   ]);
+  // ------CHANGE RANDOMIZED COLORS HERE------
+  const colors = ["#2774AE", "#FFC72C"];
 
+  const start = useRef(false);
   // useFrame executes every frame
   // passing a prop attaches a clock to it that starts upon initialization
   // getElapsedTime() is in seconds
   useFrame((start) => {
     // after 5 seconds, start generating letters
-    if (start.clock.getElapsedTime() > 5) {
+    if (start.clock.getElapsedTime() > 4.5) {
       start.current = true;
       start.clock.start();
     } else if (start.current && (start.clock.getElapsedTime() > 1)) {
@@ -149,11 +93,14 @@ const Scene = () => {
         case (Math.random() < 0.6):
           url = 'd';
           break;
-        default:
+        case (Math.random() < 0.8):
           url = 'm';
+          break;
+        default:
+          url = ',&';
       }
       setLetters([...letters,
-      <Letter url={url} id={Math.random()} position={position} rotation={rotation} />]);
+      <Letter url={url} id={Math.random()} color={colors[Math.floor(Math.random()*(colors.length))]} position={position} rotation={rotation} />]);
       start.clock.start();
     }
   });
@@ -165,7 +112,7 @@ const Scene = () => {
       <spotLight position={[1, 4, 5]} angle={.8} intensity={1} castShadow/>
       <Physics gravity={[0, -1, 0]} defaultContactMaterial={{ restitution: 0.6 }}>
         <Plane position={[0, -3, 0]} rotation={[-Math.PI / 2, 0, 0]} args={[50, 50]}/>
-        <Plane position={[0, 1, -1]} args={[50, 50]}/>
+        <Plane position={[0, 1, -2]} args={[50, 50]}/>
         <Suspense fallback={null}>
           {letters}
         </Suspense>
