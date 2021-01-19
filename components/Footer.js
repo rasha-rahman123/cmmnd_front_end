@@ -14,6 +14,9 @@ const Footer = () => {
             <a className="footer-logo" href="https://open.spotify.com/artist/3ApVnTmYfGswz2LGXATNo1?si=RY2N1nHKTcyOlAxcVT4l_Q">
             <Image src="spotify_logo.webp" width={30} />
              </a>
+             <a className="footer-logo" href="https://www.tiktok.com/@cmmnd.com?lang=en">
+            <Image src="tiktok_logo.png" paddingTop={1} marginLeft={2} width={18} />
+             </a>
         </div>
     )
 }
