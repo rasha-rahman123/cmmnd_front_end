@@ -8,7 +8,7 @@ import { Box, Button, Image } from "rebass";
 import { Router, useRouter } from "next/router";
 import Link from "next/link";
 import Scene from '../components/Scene.js';
-import Layout from '../components/Layout.js';
+import TopNav from '../components/TopNav.js';
 
 const pics = ['https://i.imgur.com/rHMyAH9.jpg','https://i.imgur.com/iaD8oK0.jpg','https://i.imgur.com/3T2VBtX.jpg','https://i.imgur.com/rv9FbOD.jpg']
 
@@ -42,23 +42,6 @@ export default function Home({ products }) {
 
   const router = useRouter();
   const query = router.query.pw || '';
-
-  //subnav copy pasted from Layout
-  const navi = [
-      { text: "Stickers", link: "/stickerform" + query },
-      { text: "Contact", link: "mailto:contact@cmmnd.com" + query },
-      { text: "About", link: "/about" + query }
-    ];
-
-  const nav = navi.map((page) => (
-      page.under_construction ?
-      <h2><strike>{page.text}</strike></h2>
-      : <Link href={page.link}>
-          <a>
-          <h2>{page.text}</h2>
-          </a>
-      </Link>
-  ))
 
 //zIndex: 0
   return (
@@ -139,7 +122,7 @@ export default function Home({ products }) {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </form>
-            {alert && <Label>Incorrect Password</Label>}
+
             <Box className="sub-nav"
             sx={{
               transition: "all 300ms ease 500ms",
@@ -148,7 +131,7 @@ export default function Home({ products }) {
               bottom: showPass ? "-5vh" : "-6vh",
               opacity: showPass? 1 : 0
             }}>
-              {nav}
+              <TopNav splash={true}></TopNav>
             </Box>
           </>
         }
