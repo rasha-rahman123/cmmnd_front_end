@@ -47,7 +47,7 @@ export default function Home({ products }) {
   return (
     <div className={styles.container} style={{cursor: `url('/cursor.png')`}}>
       <Head>
-        <title>{mesh.current && mesh.current.rotation.x}</title>
+        <title>SAY CMMND</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Canvas shadowMap colorManagement
@@ -80,7 +80,7 @@ export default function Home({ products }) {
       >
         <Button
           variant = 'secondary'
-          sx={{ mb: 2, fontFamily: "Lekton", fontSize: 4, height: 30, border: 0 }}
+          sx={{ mb: 2, fontFamily: "Lekton", fontSize: 4, height: 30, border: 0, outline: 'none' }}
           onClick={() => (showPass ? authSiteEnter() : setShowPass(true))}
         >
           ENTER

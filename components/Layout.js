@@ -8,6 +8,7 @@ import { ShopContext } from "../context/ShopContext";
 import TopNav from './TopNav'
 import Cart from "./Cart";
 import Footer from "./Footer";
+import Head from "next/head";
 
 
 const Layout = ({ children }) => {
@@ -19,10 +20,14 @@ const Layout = ({ children }) => {
 
 
         return <div className="main-container">
+            <Head>
+                <title>SAY CMMND</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <div className="main-nav">
                 <div className="home-icon">
                     <Link href="/">
-                        <Image src='/cmmnd_logo.png' width={150}/>
+                        <Image src='/cmmnd_logo.png' width={130}/>
                     </Link>
                 </div>
                 <div className="sub-nav"><TopNav/></div>
