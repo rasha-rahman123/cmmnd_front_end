@@ -46,10 +46,6 @@ export default function Home({ products }) {
 //zIndex: 0
   return (
     <div className={styles.container} style={{cursor: `url('/cursor.png')`}}>
-      <Head>
-        <title>SAY CMMND</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Canvas shadowMap colorManagement
         gl={{ alpha: false }}
         camera={{ position: [0, 0, 7], fov: 50, }}
