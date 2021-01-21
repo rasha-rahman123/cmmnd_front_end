@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
 
         return <div className="main-container">
             <Head>
-                <title>SAY CMMND</title>
+                <title>CMMND</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className="main-nav">
