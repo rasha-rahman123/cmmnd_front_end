@@ -3,6 +3,7 @@ import {useState} from 'react';
 function StickerForm() {
 
     const sheetsAPI = new URL('https://script.google.com/macros/s/AKfycbzQQK1AFWPBH5a5mjdF3QDS5Bixf23Rk5VeE1sc2QgS2qq5T_o-VbgT/exec');
+    
 
     const [values, setValues] = useState({ 
         name: '',
@@ -16,12 +17,15 @@ function StickerForm() {
         phone_number: '',
     });
 
+
     const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = async (e) => { 
         e.preventDefault();
 
         Object.keys(values).forEach(key => sheetsAPI.searchParams.append(key, values[key]))
+
+        console.log(sheetsAPI)
 
         const response = await fetch(sheetsAPI, { 
             method: "GET",
@@ -40,7 +44,9 @@ function StickerForm() {
             ...values, 
             [event.target.name]: event.target.value
         }));
+        console.log(values)
     }
+    console.log(values)
 
     const submittedMessage = () => ( 
         <h3 className="submitted-message">Thanks for your submission.</h3>

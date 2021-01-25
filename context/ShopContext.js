@@ -1,18 +1,23 @@
 import { createContext, useEffect, useState } from 'react';
 import Client from 'shopify-buy'
 
-const ShopContext = createContext()
+// makes requests
+// changes values in context
+export const ShopContext = createContext();
 
-const client = Client.buildClient({
-    storefrontAccessToken: "04f444946d9575dc71eda675be75715b",
-    domain: 'cmmnddev.myshopify.com'
-  });
+export const client = Client.buildClient({
+    storefrontAccessToken: '7df2142caeb8ea3b206bfb4ba39d3fa9',//process.env.API_TOKEN,
+    domain: 'cmmndllc.myshopify.com'//process.env.STORE_URL
+});
 
-export function ShopProvider(props) {
-    const [isCartOpen, setIsCartOpen] = useState()
+  
+
+function ShopProvider(props) {
+    const [isCartOpen, setIsCartOpen] = useState(true)
     const [checkout, setCheckout] = useState({})
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState({})
+    const [collections, setCollections] = useState([])
 
     useEffect(() => {
         if (localStorage.checkout) {
@@ -36,6 +41,7 @@ export function ShopProvider(props) {
           })
           .catch((err) => console.log(err));
       };
+      
     const addItemToCheckout = async (variantId, quantity) => {
         const lineItemsToAdd = [
           {
@@ -53,17 +59,19 @@ export function ShopProvider(props) {
         openCart();
       };
     
+      const fetchAllCollections = async () => { 
+        const collections = await client.collection.fetchAllWithProducts();
+        setCollections(collections)
+      }
+      
       const fetchAllProducts = async () => {
         const products = await client.product.fetchAll();
-        setProducts(products)
-      
+        setProducts(products);
       };
     
       const fetchProductWithId = async (id) => {
         const product = await client.product.fetch(id);
-       setProduct(product)
-        console.log(product)
-    
+        setProduct(product)
         return product;
       };
 
@@ -91,12 +99,32 @@ export function ShopProvider(props) {
       };
 
     return (
-        <ShopContext.Provider value={{isCartOpen,setIsCartOpen,setCheckout, setProducts, setProduct,checkout,products,product, openCart, closeCart, fetchAllProducts, fetchCheckout, fetchProductWithId, addItemToCheckout, updateQuantityInCart, removeLineItemInCart}}>
+        <ShopContext.Provider value={{
+          client,
+          isCartOpen,
+          checkout,
+          products,
+          product, 
+          collections,
+          setIsCartOpen,
+          setCheckout, 
+          setProducts, 
+          setProduct,
+          openCart, 
+          closeCart, 
+          fetchAllProducts, 
+          fetchAllCollections,
+          fetchCheckout, 
+          fetchProductWithId, 
+          addItemToCheckout, 
+          updateQuantityInCart, 
+          removeLineItemInCart
+        }}>
             {props.children}
         </ShopContext.Provider>
     )
 }
-const ShopConsumer = ShopContext.Consumer
 
-export {ShopConsumer, ShopContext}
+export const ShopConsumer = ShopContext.Consumer
+
 export default ShopProvider;

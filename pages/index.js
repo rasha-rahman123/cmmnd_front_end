@@ -1,14 +1,13 @@
 import Head from "next/head";
 import { Canvas } from "react-three-fiber";
 import styles from "../styles/Home.module.css";
-import Inter from "../public/Inter_Regular.json";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Input, Label } from "@rebass/forms";
 import { Box, Button, Image } from "rebass";
 import { Router, useRouter } from "next/router";
-import Link from "next/link";
 import Scene from '../components/Scene.js';
 import TopNav from '../components/TopNav.js';
+
 
 const pics = ['https://i.imgur.com/rHMyAH9.jpg','https://i.imgur.com/iaD8oK0.jpg','https://i.imgur.com/3T2VBtX.jpg','https://i.imgur.com/rv9FbOD.jpg']
 

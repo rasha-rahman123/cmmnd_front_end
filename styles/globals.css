@@ -27,7 +27,7 @@
    font-family: 'Arial';
  }
 
- h1, h2, h3, p, input, label  { 
+ h1, h2, h3, h4, p, input, label  { 
    color: black;
   font-family: 'Lekton', sans-serif;
  }
@@ -43,9 +43,9 @@
  }
  
  h1 {
-   font-weight: 400;
-   margin: 0 0 15px;
-   font-size: 4rem;
+   font-weight: 700;
+   margin: 0 0 10px;
+   font-size: 3.2rem;
  }
  
  h2 {
@@ -54,12 +54,16 @@
    font-size: 1.8rem;
  }
 
- h3 {
+h3 {
   font-weight: 700;
   margin: 0;
   font-size: 1.5rem;
 }
 
+h4 { 
+  font-size: 2.5rem;
+  font-weight: 400;
+}
 
  a { 
    text-decoration: none;
@@ -270,7 +274,7 @@
  
  .pricing {
    margin-left: 5px;
-   font-size: 16px;
+   font-size: 2rem;
    color: black;
  }
  
@@ -540,6 +544,10 @@
   justify-content: space-evenly;
 }
 
+.shopping-cart-nav { 
+  /* color:  */
+}
+
 .footer { 
   display: flex;
   flex-direction: row;
@@ -601,6 +609,26 @@
 
  .about-description h3 { 
   font-size: 6rem;
+}
+
+/* shop page */
+.product-container { 
+  margin: 0px 40px;
+}
+
+/* product page */
+.product-page { 
+  display: flex;
+  flex-direction: row;
+}
+
+.product-details { 
+  display: flex;
+  flex-direction: column;
+}
+
+.product-active-image { 
+  margin: 15px 50px;
 }
 
 

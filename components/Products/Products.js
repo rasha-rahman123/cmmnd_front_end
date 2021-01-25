@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Product from './Product';
 
-class Products extends Component {
-  render() {
-    let products = this.props.products.map((product) => {
+const Products = ({products,collection}) => {
+    let product_elements = products.map((product) => {
       return (
         <Product
-          addVariantToCart={this.props.addVariantToCart}
-          client={this.props.client}
-          key={product.id.toString()}
+          // addVariantToCart={product.addVariantToCart}
+          collection={collection}
+          key={product.id}
           product={product}
         />
       );
@@ -16,10 +15,11 @@ class Products extends Component {
 
     return (
       <div className="Product-wrapper">
-        {products}
+        {product_elements}
       </div>
     );
-  }
+
+
 }
 
 export default Products;

@@ -1,6 +1,6 @@
-import React, { Component, useState, useRef, useEffect, useContext } from "react";
+import React, { Component, useState, useCallback, useEffect, useContext } from "react";
 // import * as THREE from "three";
-import Products from "../components/Products";
+import Products from "../components/Products/Products";
 import Cart from "../components/Cart";
 import Layout from "../components/Layout";
 import { ShopContext } from "../context/ShopContext";
@@ -8,30 +8,33 @@ import { ShopContext } from "../context/ShopContext";
 // import { useFrame, Canvas } from "react-three-fiber";
 
 
-export function Shop(){
-  const {fetchAllProducts, products} = useContext(ShopContext)
+function Shop(){
+  const {fetchAllCollections, collections} = useContext(ShopContext);
+
+  // const [products, setProducts] = useState([]);
+  // const [items] = useState(products);
+  
   useEffect(() => {
-    fetchAllProducts();
-    return () => {
-        // cleanup
-    };
-}, [fetchAllProducts])
-if (!products) return <Layout>Products are loading</Layout>
-    return (
-    
-        <div className="App">
-        
+    fetchAllCollections(); 
+  }, []);
+
+  const collectionsWithProducts = collections.map((collection) => ( 
+    <Products
+      collection={collection.title}
+      products={collection.products}
+    />
+  ));
+
+  // if timeout than say error loading
+  if (collections.length == 0) return <h2>Collections are loading</h2>
+
+  return (
+      <div className="App">
         <div>
-     
-          <Products
-            products={products}
-          />
-          
+          {collectionsWithProducts}
         </div>
-      
     </div>
-    
-    );
+  );
 }
 
 export default Shop;
