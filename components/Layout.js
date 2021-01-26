@@ -6,7 +6,6 @@ import {Image} from "rebass";
 import { parseCookies } from "nookies";
 // import { ShopContext } from "../context/ShopContext";
 import TopNav from './TopNav'
-import Cart from "./Cart";
 import Footer from "./Footer";
 import Head from "next/head";
 

@@ -30,16 +30,16 @@ function ShopProvider(props) {
     }
 
     const createCheckout = async () => {
-        const checkout = await client.checkout.create();
-        localStorage.setItem("checkout", checkout.id);
-        await setCheckout(checkout);
+        const newCheckout = await client.checkout.create();
+        localStorage.setItem("checkout", newCheckout.id);
+        await setCheckout(newCheckout);
       };
     
     const fetchCheckout = async (checkoutId) => {
         client.checkout
           .fetch(checkoutId)
-          .then((checkout) => {
-           setCheckout(checkout)
+          .then((result) => {
+           setCheckout(result)
           })
           .catch((err) => console.log(err));
       };
@@ -93,7 +93,7 @@ function ShopProvider(props) {
         setCheckout(check)
       }
     
-    const closeCart = () => {
+      const closeCart = () => {
        setIsCartOpen(false)
       };
       const openCart = () => {

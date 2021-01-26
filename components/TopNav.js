@@ -31,10 +31,12 @@ const TopNav = (props) =>  {
 
     var cart = null;
     if(isCartOpen && checkout && checkout.lineItems) { 
-        const itemslen = checkout.lineItems.length;
+        const itemslen = checkout.lineItems.reduce((accumulator, item) => accumulator + (item.quantity || 0), 0);
         cart = <Link href="/cart">
-            {/* todo: add number of items in cart */}
-            <h2 class='shopping-cart-nav'>{`Cart(${itemslen})`}</h2>
+            <a>
+                {/* todo: add number of items in cart */}
+                <h2 class='shopping-cart-nav'>{`Cart(${itemslen})`}</h2>
+            </a>
         </Link>
     }
   
