@@ -3,6 +3,7 @@ import Product from './Product';
 
 const Products = ({products,collection}) => {
     let product_elements = products.map((product) => {
+      console.log(product, "products")
       return (
         <Product
           // addVariantToCart={product.addVariantToCart}

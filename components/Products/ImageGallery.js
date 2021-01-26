@@ -10,7 +10,7 @@ const Gallery = ({images}) => {
             <div className='secondary-images-container'>
                 {images.map((img, i) => (
                     i != activeIndex ? 
-                    <Image src={img.src}/> :
+                    <Image width={[80, 150]} src={img.src}/> :
                     null
                 ))}
             </div>

@@ -19,10 +19,10 @@ function Shop(){
   }, []);
 
   const collectionsWithProducts = collections.map((collection) => ( 
-    <Products
+    collection.products.length != 0 ? <Products
       collection={collection.title}
       products={collection.products}
-    />
+    /> : null
   ));
 
   // if timeout than say error loading

@@ -1,0 +1,38 @@
+{
+  "name": "ecommerce-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@rebass/forms": "^4.0.6",
+    "@stripe/stripe-js": "^1.11.0",
+    "magic-sdk": "^4.0.2",
+    "next": "10.0.3",
+    "nookies": "^2.5.0",
+    "postprocessing": "^6.18.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-load-script": "0.0.6",
+    "react-markdown": "^5.0.3",
+    "react-modal": "^3.12.1",
+    "react-postprocessing": "^1.4.0",
+    "react-three-fiber": "^5.3.10",
+    "react-use-gesture": "^9.0.0-beta.11",
+    "rebass": "^4.0.7",
+    "remark-gfm": "^1.0.0",
+    "shopify-buy": "^2.11.0",
+    "theme-ui": "^0.3.5",
+    "three": "^0.123.0",
+    "three-gltf-loader": "^1.111.0",
+    "three-orbitcontrols": "^2.110.3",
+    "use-cannon": "^0.5.3"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.11",
+    "react-test-renderer": "^17.0.1"
+  }
+}

@@ -10,8 +10,6 @@ export const client = Client.buildClient({
     domain: 'cmmndllc.myshopify.com'//process.env.STORE_URL
 });
 
-  
-
 function ShopProvider(props) {
     const [isCartOpen, setIsCartOpen] = useState(true)
     const [checkout, setCheckout] = useState({})
@@ -26,6 +24,10 @@ function ShopProvider(props) {
             createCheckout();
           }
     },[])
+
+    const getVariantFromOptions = (options) => { 
+      return client.product.helpers.variantForOptions(product, options)
+    }
 
     const createCheckout = async () => {
         const checkout = await client.checkout.create();
@@ -54,11 +56,11 @@ function ShopProvider(props) {
           lineItemsToAdd
         );
         setCheckout(check)
-            console.log(check)
+        console.log(check, "check")
     
         openCart();
       };
-    
+  
       const fetchAllCollections = async () => { 
         const collections = await client.collection.fetchAllWithProducts();
         setCollections(collections)
@@ -100,12 +102,12 @@ function ShopProvider(props) {
 
     return (
         <ShopContext.Provider value={{
-          client,
           isCartOpen,
           checkout,
           products,
           product, 
           collections,
+          getVariantFromOptions,
           setIsCartOpen,
           setCheckout, 
           setProducts, 
