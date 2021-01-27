@@ -22,13 +22,15 @@ function Product(props) {
             <Image
               src={props.product.images[0].src}
               alt={`${props.product.title} product shot`}
-              width={[125, 200]}
-              height={[125, 200]}
+              width={[125, 220]}
+              height={[125, 220]}
             />
           ) : null}
           {/* todo: default image in case  */}
+          <div className="product-preview-title">
           <h3>{props.collection}</h3>
           <h3>{props.product.title}</h3>
+          </div>
           {/* <span className="Product__price">${variant.price}</span> */}
           {/* {variantSelectors} */}
           {/* <label className="Product__option">

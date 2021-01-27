@@ -1,6 +1,6 @@
 import React, { Component, useState, useCallback, useEffect, useContext } from "react";
 // import * as THREE from "three";
-import Products from "../components/Products/Products";
+import Product from "../components/Products/Product";
 import { ShopContext } from "../context/ShopContext";
 
 // import { useFrame, Canvas } from "react-three-fiber";
@@ -16,21 +16,44 @@ function Shop(){
     fetchAllCollections(); 
   }, []);
 
-  const collectionsWithProducts = collections.map((collection) => ( 
-    collection.products.length != 0 ? <Products
-      collection={collection.title}
-      products={collection.products}
-    /> : null
-  ));
+  // unravel all products in collections
+  const collectionsWithProducts = collections.map((collection) => { 
+    if (collection.products.length != 0) { 
+      return collection.products.map((product) => { 
+        return (
+          <Product
+            collection={collection.title}
+            key={product.id}
+            product={product}
+          />
+        );
+      })
+    }
+  });
+
+  // // count number of products in each 
+  // let collection = {};
+  // let products = [];
+  // collections.reduce((aggregator, collection) => { 
+  //   if (collection.products.length != 0) { 
+  //     let index = collection.products.length + aggregator; 
+  //     collectionsDict[collection.title] = index;
+
+  //     products.push(collection.products);
+  //     return index;
+  //   }
+  // }, 0)
+
+  
+  console.log(collectionsWithProducts, "proddd")
 
   // if timeout than say error loading
   if (collections.length == 0) return <h2>Collections are loading</h2>
 
   return (
-      <div className="App">
-        <div>
-          {collectionsWithProducts}
-        </div>
+      
+    <div className="shop-container">
+      {collectionsWithProducts}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Box, Button, Image, Text } from "rebass";
+// import { Box, Button, Image, Text } from "rebass";
 
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -93,7 +93,9 @@ const Product = () => {
           <div className='product-selectors'>
             {selectors}
           </div>
-          <Button onClick={() => addItemToCheckout(variant.id, 1)} width={150} height={50}><Text fontSize={2}>ADD TO CART</Text></Button>
+          <div className='product-buttons'>
+          <button className="button" onClick={() => addItemToCheckout(variant.id, 1)}>ADD TO CART</button>
+          </div>
         </div>
       </div>
     );
