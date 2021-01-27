@@ -5,10 +5,9 @@ import { ThemeProvider } from "theme-ui";
 import theme from "../styles/theme";
 import "../styles/globals.css";
 
+import ShopProvider from "../context/ShopContext";
 
-import ShopProvider, { ShopContext } from "../context/ShopContext";
 function MyApp({ Component, pageProps, articles}) {
-  
 
   return (
     <ShopProvider>
@@ -22,4 +21,3 @@ function MyApp({ Component, pageProps, articles}) {
 }
 
 export default MyApp;
-

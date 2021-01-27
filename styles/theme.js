@@ -63,7 +63,5 @@ export default {
           textDecoration: 'none'
         }
       }
-
-
     }
   }
