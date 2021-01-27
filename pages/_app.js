@@ -5,7 +5,6 @@ import { ThemeProvider } from "theme-ui";
 import theme from "../styles/theme";
 import "../styles/globals.css";
 
-
 import ShopProvider, { ShopContext } from "../context/ShopContext";
 function MyApp({ Component, pageProps, articles}) {
   
