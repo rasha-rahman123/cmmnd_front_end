@@ -11,7 +11,6 @@ const OptionSelector = (props) => {
         onChange={props.handleOptionChange}
       >
         {props.option.values.map((value) => {
-          console.log(value.value, 'vall')
     
           return (
             <option value={value} key={`${props.option.name}-${value}`}>{value.value}</option>

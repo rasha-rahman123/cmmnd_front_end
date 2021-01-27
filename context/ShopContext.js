@@ -56,7 +56,6 @@ function ShopProvider(props) {
           lineItemsToAdd
         );
         setCheckout(check)
-        console.log(check, "check")
     
         openCart();
       };

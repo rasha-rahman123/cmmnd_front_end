@@ -20,9 +20,8 @@ function Cart(){
     });
 
     return (
-      <div>
-        <h2>Your cart</h2>
         <div className="cart-checkout-container">
+          <h2>Your cart</h2>
           <div className="cart-labels cart-grid">
             <p className="cart-label-a">Items</p>
             <p className="cart-label-b">Quantity</p>
@@ -43,7 +42,6 @@ function Cart(){
           <button className="button" onClick={() => openCheckout()}>Checkout</button>
           </div>
         </div>
-      </div>
     )
   }
 

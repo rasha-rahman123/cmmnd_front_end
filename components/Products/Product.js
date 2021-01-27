@@ -22,8 +22,7 @@ function Product(props) {
             <Image
               src={props.product.images[0].src}
               alt={`${props.product.title} product shot`}
-              width={[125, 220]}
-              height={[125, 220]}
+              width={[280, 220]}
             />
           ) : null}
           {/* todo: default image in case  */}

@@ -30,15 +30,15 @@ const TopNav = (props) =>  {
     ))
 
     var cart = null;
+    // todo: close cart if it is open and empty ? 
     if(isCartOpen && checkout && checkout.lineItems) { 
         const itemslen = checkout.lineItems.reduce((accumulator, item) => accumulator + (item.quantity || 0), 0);
         cart = <Link href="/cart">
             <a>
-                {/* todo: add number of items in cart */}
                 <h2 class='shopping-cart-nav'>{`Cart(${itemslen})`}</h2>
             </a>
         </Link>
-    }
+    } 
   
     
     return <>{nav}{cart}</>

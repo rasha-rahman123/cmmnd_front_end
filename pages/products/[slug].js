@@ -54,7 +54,6 @@ const Product = () => {
 // put something here for rendering the selectors 
   if (loading) return <h4>Product is loading</h4>
   else { 
-    console.log(product.options)
     const selectors = product.options && product.options.map((option) => {
       return (
         <Selector
@@ -68,7 +67,6 @@ const Product = () => {
     const description = product.description && product.description.slice(1).split(' -').map((line) => { 
       return <p>{`-${line}`}</p>
     });
-    console.log(description, product.description)
 
     return (
       <div className='product-page'>

@@ -31,22 +31,6 @@ function Shop(){
     }
   });
 
-  // // count number of products in each 
-  // let collection = {};
-  // let products = [];
-  // collections.reduce((aggregator, collection) => { 
-  //   if (collection.products.length != 0) { 
-  //     let index = collection.products.length + aggregator; 
-  //     collectionsDict[collection.title] = index;
-
-  //     products.push(collection.products);
-  //     return index;
-  //   }
-  // }, 0)
-
-  
-  console.log(collectionsWithProducts, "proddd")
-
   // if timeout than say error loading
   if (collections.length == 0) return <h2>Collections are loading</h2>
 

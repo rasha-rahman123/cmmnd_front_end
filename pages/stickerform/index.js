@@ -5,6 +5,7 @@ function StickerForm() {
     const sheetsAPI = new URL('https://script.google.com/macros/s/AKfycbzQQK1AFWPBH5a5mjdF3QDS5Bixf23Rk5VeE1sc2QgS2qq5T_o-VbgT/exec');
     
 
+    
     const [values, setValues] = useState({ 
         name: '',
         shipping_address_1: '',
@@ -15,17 +16,34 @@ function StickerForm() {
         country: '', 
         email: '',
         phone_number: '',
+        time_stamp: '',
     });
 
 
     const [submitted, setSubmitted] = useState(false);
 
+
     const handleSubmit = async (e) => { 
         e.preventDefault();
+        // set timestamp
+        // await setValues((values) => ({
+        //     ...values, 
+        //     zipcode: `'${values.zipcode}`,
+        //     time_stamp: Date.now()
+        // }));
+
+        // console.log(values.time_stamp, "tiemeiefj")
+
+        var time = new Date().getTime();
+        var date = new Date(time);
+        console.log(date.toString())
 
         Object.keys(values).forEach(key => sheetsAPI.searchParams.append(key, values[key]))
+        
+        sheetsAPI.searchParams.set('time_stamp', date.toString());
+        sheetsAPI.searchParams.set('zipcode', `'${values.zipcode}`)
 
-        console.log(sheetsAPI)
+        console.log(sheetsAPI.searchParams)
 
         const response = await fetch(sheetsAPI, { 
             method: "GET",
@@ -44,9 +62,8 @@ function StickerForm() {
             ...values, 
             [event.target.name]: event.target.value
         }));
-        console.log(values)
+     
     }
-    console.log(values)
 
     const submittedMessage = () => ( 
         <h3 className="submitted-message">Thanks for your submission.</h3>
