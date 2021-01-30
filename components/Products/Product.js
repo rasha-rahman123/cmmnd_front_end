@@ -13,7 +13,7 @@ function Product(props) {
     <Link 
       href={{
         pathname: `/products/${props.product.title}`,
-        query: { id: props.product.id, pw: query },
+        query: { collection:props.collection , id: props.product.id, pw: query },
       }}
     >
       <a>

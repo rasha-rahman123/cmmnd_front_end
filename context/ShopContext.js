@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
+import './utils'
 import Client from 'shopify-buy'
+import { countTotalLineItems } from './utils';
 
 // makes requests
 // changes values in context
@@ -11,7 +13,7 @@ export const client = Client.buildClient({
 });
 
 function ShopProvider(props) {
-    const [isCartOpen, setIsCartOpen] = useState(true)
+    const [isCartOpen, setIsCartOpen] = useState(false)
     const [checkout, setCheckout] = useState({})
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState({})
@@ -20,10 +22,26 @@ function ShopProvider(props) {
     useEffect(() => {
         if (localStorage.checkout) {
             fetchCheckout(localStorage.checkout);
-          } else {
+            setIsCartOpen(true);
+          } 
+          else {
             createCheckout();
           }
     },[])
+
+    useEffect(() => { 
+      if(checkout.lineItems) { 
+        const num = countTotalLineItems(checkout.lineItems)
+        if ( num == 0 ) { 
+          setIsCartOpen(false);
+        }
+      }
+
+      if(checkout.completedAt) { 
+        createCheckout();
+        setIsCartOpen(false)
+      }
+    }, [checkout])
 
     const getVariantFromOptions = (options) => { 
       return client.product.helpers.variantForOptions(product, options)
@@ -32,7 +50,7 @@ function ShopProvider(props) {
     const createCheckout = async () => {
         const newCheckout = await client.checkout.create();
         localStorage.setItem("checkout", newCheckout.id);
-        await setCheckout(newCheckout);
+        setCheckout(newCheckout);
       };
     
     const fetchCheckout = async (checkoutId) => {
@@ -56,8 +74,7 @@ function ShopProvider(props) {
           lineItemsToAdd
         );
         setCheckout(check)
-    
-        openCart();
+        setIsCartOpen(true);
       };
   
       const fetchAllCollections = async () => { 
@@ -76,28 +93,34 @@ function ShopProvider(props) {
         return product;
       };
 
+      const clearProduct = () => { 
+        setProduct({})
+      }
+
       const updateQuantityInCart = async (lineItemId, quantity) => {
         const checkoutId = checkout.id;
         const lineItemsToUpdate = [
           { id: lineItemId, quantity: parseInt(quantity, 10) },
         ];
-
         const check = await client.checkout.updateLineItems(checkoutId, lineItemsToUpdate)
+        console.log(check);
         setCheckout(check)
+
       }
     
       const removeLineItemInCart = async (lineItemId) => {
         const checkoutId = checkout.id;
+
         const check = await client.checkout.removeLineItems(checkoutId, [lineItemId])
-        setCheckout(check)
+        setCheckout(check);
       }
     
-      const closeCart = () => {
-       setIsCartOpen(false)
-      };
-      const openCart = () => {
-        setIsCartOpen(true)
-      };
+      // const closeCart = () => {
+      //  setIsCartOpen(false)
+      // };
+      // const openCart = () => {
+      //   setIsCartOpen(true)
+      // };
 
     return (
         <ShopContext.Provider value={{
@@ -107,12 +130,9 @@ function ShopProvider(props) {
           product, 
           collections,
           getVariantFromOptions,
-          setIsCartOpen,
-          setCheckout, 
-          setProducts, 
-          setProduct,
-          openCart, 
-          closeCart, 
+          clearProduct,
+          // openCart, 
+          // closeCart, 
           fetchAllProducts, 
           fetchAllCollections,
           fetchCheckout, 

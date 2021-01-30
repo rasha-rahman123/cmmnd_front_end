@@ -10,7 +10,8 @@ import Selector from '../../components/OptionSelector';
 const Product = () => {
   const router = useRouter();
   const productID = router.query.id;
-  // set default opts
+  const collection = router.query.collection;
+
   var defaultOptionValues = {};
   // variant options
   const [options, setOptions] = useState(defaultOptionValues);
@@ -19,7 +20,11 @@ const Product = () => {
   const [images, setImages] = useState([])
   const [loading, setLoading] = useState(true);
   
-  const {fetchProductWithId, product, addItemToCheckout, getVariantFromOptions} = useContext(ShopContext)
+  const {fetchProductWithId, product, clearProduct, addItemToCheckout, getVariantFromOptions} = useContext(ShopContext)
+
+  useEffect(() => { 
+    clearProduct()
+  }, [])
 
   useEffect(() => { 
     setLoading(true);
@@ -35,24 +40,27 @@ const Product = () => {
       });
   
       setOptions(defaultOptionValues);
-      setVariant(product.variants[0])
+      // find variants that are in stock
+      const variantsInStock = product.variants.filter((v) => v.available)
+      if(variantsInStock.length > 0) { 
+        setVariant(variantsInStock[0]);
+      } else { 
+        setVariant(product.variants[0]);
+      }
     }
   },[product])
 
   const handleOptionChange = (e) => { 
     const target = e.target;
-    // bug: does this change the option in state? 
     let selectedOptions = options;
     selectedOptions[target.name] = target.value;  
     const selectedVariant = getVariantFromOptions(selectedOptions);
     setVariant(selectedVariant);
-    // add selected image
-    // setVariantImage(selectedVariant.attrs.image)
   }
 
 
 // put something here for rendering the selectors 
-  if (loading) return <h4>Product is loading</h4>
+  if (loading || !product || !product.title || !product.options || !variant) return <div className='product-page'></div>
   else { 
     const selectors = product.options && product.options.map((option) => {
       return (
@@ -71,13 +79,13 @@ const Product = () => {
     return (
       <div className='product-page'>
         <Head>
-          <title>{product && product.title} - CMMND</title>
+          <title>{product.title} - CMMND</title>
         </Head>
-        {product && product.images && <Gallery images={product.images}/>}
+        {product.images && <Gallery images={product.images}/>}
   
         <div className='product-details'>
           <h1>
-            {product && product.title}
+            {collection + ' ' + product.title}
           </h1>
   
           {/* todo: make variants dynamic */}
@@ -85,14 +93,15 @@ const Product = () => {
             ${product && product.variants && product.variants[0].price} 
           </h4>
           <div className="product-description">
-          <p>{product.title}</p>
+          <p>{collection + ' ' + product.title}</p>
           {description}
           </div>
           <div className='product-selectors'>
             {selectors}
           </div>
           <div className='product-buttons'>
-          <button className="button" onClick={() => addItemToCheckout(variant.id, 1)}>ADD TO CART</button>
+          {variant.available ? <button className="button" onClick={() => addItemToCheckout(variant.id, 1)}><b>ADD TO CART</b></button> :  
+          <h2>Out of stock</h2>}
           </div>
         </div>
       </div>

@@ -1,10 +1,11 @@
 import Link from "next/link";
 import {useContext} from "react";
 import {ShopContext} from "../context/ShopContext";
+import {countTotalLineItems} from '../context/utils';
 
 const TopNav = (props) =>  {
 
-    const {isCartOpen, checkout} = useContext(ShopContext);
+    const {isCartOpen, checkout, openCart, closeCart} = useContext(ShopContext);
 
     var navi = [
         { text: "Home", link: "/" },
@@ -31,13 +32,19 @@ const TopNav = (props) =>  {
 
     var cart = null;
     // todo: close cart if it is open and empty ? 
-    if(isCartOpen && checkout && checkout.lineItems) { 
-        const itemslen = checkout.lineItems.reduce((accumulator, item) => accumulator + (item.quantity || 0), 0);
-        cart = <Link href="/cart">
+    if(checkout && checkout.lineItems) {
+
+        if (!isCartOpen) { 
+            cart = null;
+        }
+        else { 
+            const itemslen = countTotalLineItems(checkout.lineItems);
+            cart = <Link href="/cart">
             <a>
                 <h2 class='shopping-cart-nav'>{`Cart(${itemslen})`}</h2>
             </a>
-        </Link>
+            </Link>
+        }
     } 
   
     

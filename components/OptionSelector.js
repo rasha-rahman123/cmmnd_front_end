@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {ShopContext} from '../context/ShopContext';
 
 const OptionSelector = (props) => {
     return (
