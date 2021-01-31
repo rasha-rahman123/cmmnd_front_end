@@ -106,7 +106,6 @@ const Product = () => {
             ${product && product.variants && product.variants[0].price} 
           </h4>
           <div className="product-description">
-          <p>{collection + ' ' + product.title}</p>
           {description}
           </div>
           <div className='product-selectors'>
