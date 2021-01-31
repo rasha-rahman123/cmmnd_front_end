@@ -1,15 +1,19 @@
 import Link from "next/link";
+import {useRouter} from "next/router";
 import {useContext} from "react";
 import {ShopContext} from "../context/ShopContext";
 import {countTotalLineItems} from '../context/utils';
 
 const TopNav = (props) =>  {
 
-    const {isCartOpen, checkout, openCart, closeCart} = useContext(ShopContext);
+    const router = useRouter()
+    const pw = router.query.pw || '';
+
+    const {isCartOpen, checkout, isShopOpen} = useContext(ShopContext);
 
     var navi = [
         { text: "Home", link: "/" },
-        { text: "Shop", link: "/shop"},
+        { text: "Shop", link: "/shop", under_construction: !isShopOpen() },
         { text: "Archive", link: "/archive" , under_construction: true },
         { text: "About", link: "/about" , home:true },
         { text: "Contact", link: "mailto:contact@cmmnd.com" , home:true },
@@ -23,7 +27,7 @@ const TopNav = (props) =>  {
     const nav = navi.map((page, i) => (
         page.under_construction ?
         <h2 key={i}><strike>{page.text}</strike></h2>
-        : <Link key={i} href={page.link}>
+        : <Link key={i} href={page.link + `?pw=${pw}`}>
             <a>
             <h2>{page.text}</h2>
             </a>
@@ -34,12 +38,12 @@ const TopNav = (props) =>  {
     // todo: close cart if it is open and empty ? 
     if(checkout && checkout.lineItems) {
 
-        if (!isCartOpen) { 
+        if (!isCartOpen || !isShopOpen()) { 
             cart = null;
-        }
+        } 
         else { 
             const itemslen = countTotalLineItems(checkout.lineItems);
-            cart = <Link href="/cart">
+            cart = <Link href={`/cart?pw=${pw}`}>
             <a>
                 <h2 class='shopping-cart-nav'>{`Cart(${itemslen})`}</h2>
             </a>

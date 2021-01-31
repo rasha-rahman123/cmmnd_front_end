@@ -40,6 +40,7 @@ select {
   /* -webkit-appearance: none;
   -moz-appearance: none; */
   /* appearance: none;  */
+  cursor: pointer;
   padding: 5px;
   border-radius: 0;
   margin: 5px 0px;
@@ -452,6 +453,7 @@ h5 {
 
 .product-secondary-image { 
   margin: 0px 15px 0px 0px;
+  cursor: pointer;
 }
 @media only screen and (max-width: 1025px) {
   .home-icon { 
@@ -504,9 +506,10 @@ h5 {
   }
 
   .shop-container {
-    margin: 40px auto 0;
-    display: block;
-    width: 76vw;
+    margin: 10px;
+    /* display: block; */
+    grid-template-columns: 50% 50%;
+    width: 85vw;
   }
 
   .product-page { 

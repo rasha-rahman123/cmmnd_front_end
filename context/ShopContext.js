@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+import {useRouter} from 'next/router'
 import './utils'
 import Client from 'shopify-buy'
 import { countTotalLineItems } from './utils';
@@ -13,13 +14,17 @@ export const client = Client.buildClient({
 });
 
 function ShopProvider(props) {
-    const [isCartOpen, setIsCartOpen] = useState(false)
-    const [checkout, setCheckout] = useState({})
-    const [products, setProducts] = useState([])
-    const [product, setProduct] = useState({})
-    const [collections, setCollections] = useState([])
+    const [isCartOpen, setIsCartOpen] = useState(false);
+    // const [shopOpen, setShopOpen] = useState(false);
+    const [checkout, setCheckout] = useState({});
+    const [products, setProducts] = useState([]);
+    const [product, setProduct] = useState({});
+    const [collections, setCollections] = useState([]);
+    const router = useRouter();
 
     useEffect(() => {
+        fetchAllCollections(); 
+
         if (localStorage.checkout) {
             fetchCheckout(localStorage.checkout);
             setIsCartOpen(true);
@@ -42,6 +47,18 @@ function ShopProvider(props) {
         setIsCartOpen(false)
       }
     }, [checkout])
+
+    // check if the password query is set, if yes allow shop 
+    const isShopOpen = (ps) => {
+      const pw = ps || router.query.pw || '';
+
+      if (pw === 'creativelabog') { 
+        return true;
+      }
+      // todo: clear query
+      return false;
+      
+    }
 
     const getVariantFromOptions = (options) => { 
       return client.product.helpers.variantForOptions(product, options)
@@ -115,12 +132,7 @@ function ShopProvider(props) {
         setCheckout(check);
       }
     
-      // const closeCart = () => {
-      //  setIsCartOpen(false)
-      // };
-      // const openCart = () => {
-      //   setIsCartOpen(true)
-      // };
+
 
     return (
         <ShopContext.Provider value={{
@@ -129,10 +141,9 @@ function ShopProvider(props) {
           products,
           product, 
           collections,
+          isShopOpen,
           getVariantFromOptions,
           clearProduct,
-          // openCart, 
-          // closeCart, 
           fetchAllProducts, 
           fetchAllCollections,
           fetchCheckout, 

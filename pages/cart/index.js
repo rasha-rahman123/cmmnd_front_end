@@ -10,6 +10,7 @@ function Cart(){
   }
     const {checkout, isCartOpen} = useContext(ShopContext);
     const router = useRouter()
+    const pw = router.query.pw || '';
 
     let lineItems = checkout && checkout.lineItems && checkout.lineItems.map((item) => {
       return (
@@ -23,9 +24,22 @@ function Cart(){
     // if cart is not open then redirect
     useEffect(() => { 
       if(!isCartOpen) { 
-        router.push('./shop')
+        router.push({
+          pathname: "/shop",
+          query: {
+            pw: pw,
+          }
+        })
+        
       } 
     }, [isCartOpen])
+
+    const shippingPrice = checkout.shippingLine ? checkout.shippingLine.price : 0;
+    const taxTotal = checkout.totalTax ? checkout.totalTax : 0;
+
+    const defaultText = "calculated at checkout";
+    const shippingText = shippingPrice > 0 ? `$ ${checkout.shippingLine.price}` : defaultText;
+    const taxText = taxTotal > 0 ? `$ ${checkout.totalTax}` : defaultText;
 
     return (
         <div className="cart-checkout-container">
@@ -49,13 +63,13 @@ function Cart(){
           <div className="cart-grid cart-footer">
               <h3 className="cart-info-total">Shipping</h3>
               <div className="Cart-info-pricing">
-                <p className="pricing">$ {checkout.shippingLine && checkout.shippingLine.price}</p>
+                <p className="pricing">{shippingText}</p>
               </div>
           </div>
           <div className="cart-grid cart-footer">
               <h3 className="cart-info-total">Tax</h3>
               <div className="Cart-info-pricing">
-                <p className="pricing">$ {checkout.totalTax}</p>
+                <p className="pricing">{taxText}</p>
               </div>
           </div>
           <div className="cart-grid cart-footer">

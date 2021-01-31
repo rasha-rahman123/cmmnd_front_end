@@ -1,46 +1,42 @@
-import Head from "next/head";
 import { Canvas } from "react-three-fiber";
 import styles from "../styles/Home.module.css";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { Input, Label } from "@rebass/forms";
 import { Box, Button, Image } from "rebass";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Scene from '../components/Scene.js';
 import TopNav from '../components/TopNav.js';
+import {ShopContext} from '../context/ShopContext'
 
 
-const pics = ['https://i.imgur.com/rHMyAH9.jpg','https://i.imgur.com/iaD8oK0.jpg','https://i.imgur.com/3T2VBtX.jpg','https://i.imgur.com/rv9FbOD.jpg']
-
-
-export default function Home({ products }) {
-
-  const mesh = useRef(null);
-  const loginstuff = async () => {
-    const loginInfo = {
-      password: password,
-    };
-    loginInfo.password === process.env.NEXT_PUBLIC_ENTRY_PASS &&
-      Router.push({
-        pathname: "/shop",
-        query: {
-          pw: password,
-        },
-      });
-
-    console.log(process.env.NEXT_PUBLIC_ENTRY_PASS, loginInfo.password);
-  };
+export default function Home() {
 
   const inputRef = useRef();
   const [alert, setAlert] = useState();
   const [showPass, setShowPass] = useState(false);
   const [password, setPassword] = useState("");
 
-  const authSiteEnter = () => {
-    loginstuff();
-  };
-
+  const {isShopOpen} = useContext(ShopContext)
   const router = useRouter();
-  const query = router.query.pw || '';
+
+  const authSiteEnter = async (e) => {
+      const open = isShopOpen(password)
+
+      if( open ) {
+        router.push({
+          pathname: "/shop",
+          query: {
+            pw: password,
+          }
+        })
+      }
+  }
+
+    // set is shop open to open
+
+    // set the query to password field 
+    // if correct, redirect to shop page & open shop in context
+
 
 //zIndex: 0
   return (
@@ -76,7 +72,7 @@ export default function Home({ products }) {
         <Button
           variant = 'secondary'
           sx={{ mb: 2, fontFamily: "Lekton", fontSize: 4, height: 30, border: 0, outline: 'none' }}
-          onClick={() => (showPass ? authSiteEnter() : setShowPass(true))}
+          onClick={() => (showPass ? authSiteEnter : setShowPass(true))}
         >
           ENTER
         </Button>
@@ -90,7 +86,7 @@ export default function Home({ products }) {
               }}
               onSubmit={(e) => {
                 e.preventDefault();
-                authSiteEnter();
+                authSiteEnter(e);
               }}
             >
               <Input
@@ -98,11 +94,10 @@ export default function Home({ products }) {
                 sx={{
                   py: 2,
                   background: "#00000015",
-                  color: "white",
                   border: "none",
                   outline: "none",
                   textAlign: "center",
-                  fontSize: 24,
+                  fontSize: 28,
                   transition: "all 300ms ease 500ms",
                   margin: "0 auto",
                   position: "relative",

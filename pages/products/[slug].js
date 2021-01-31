@@ -11,13 +11,14 @@ const Product = () => {
   const router = useRouter();
   const productID = router.query.id;
   const collection = router.query.collection;
+  const pw = router.query.pw || '';
 
   var defaultOptionValues = {};
   // variant options
   const [options, setOptions] = useState(defaultOptionValues);
   const [variant, setVariant] = useState(null);
   
-  const [images, setImages] = useState([])
+  // const [images, setImages] = useState([])
   const [loading, setLoading] = useState(true);
   
   const {fetchProductWithId, product, clearProduct, addItemToCheckout, getVariantFromOptions} = useContext(ShopContext)
@@ -49,6 +50,16 @@ const Product = () => {
       }
     }
   },[product])
+
+  const addItemToCart = async (id) => { 
+    await addItemToCheckout(id, 1);
+    router.push({
+      pathname: '/cart',
+      query: {
+        pw: pw,
+      }
+    })
+  }
 
   const handleOptionChange = (e) => { 
     const target = e.target;
@@ -100,7 +111,7 @@ const Product = () => {
             {selectors}
           </div>
           <div className='product-buttons'>
-          {variant.available ? <button className="button" onClick={() => addItemToCheckout(variant.id, 1)}><b>ADD TO CART</b></button> :  
+          {variant.available ? <button className="button" onClick={() => addItemToCart(variant.id)}><b>ADD TO CART</b></button> :  
           <h2>Out of stock</h2>}
           </div>
         </div>
