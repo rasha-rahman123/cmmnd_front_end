@@ -27,12 +27,14 @@ function ShopProvider(props) {
 
           if (localStorage.checkout) {
             await fetchCheckout(localStorage.checkout);
-            if(checkout && checkout.id)
-              setIsCartOpen(true); 
+            if(checkout && checkout.id){
+              setIsCartOpen(true); }
               else {
                 createCheckout();
               }
-          } 
+          }   else {
+            createCheckout();
+          }
     },[])
 
     useEffect(() => { 
