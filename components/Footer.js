@@ -17,7 +17,7 @@ const Footer = () => {
     const nav = navi.map((page, i) => (
         <Link key={i} href={page.link + `?pw=${pw}`}>
             <a>
-            <h2>{page.text}</h2>
+            <h2 className="footer-text">{page.text}</h2>
             </a>
         </Link>
     ))

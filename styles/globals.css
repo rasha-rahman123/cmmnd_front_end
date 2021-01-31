@@ -290,6 +290,10 @@ h5 {
   margin: 0px 8px;
 }
 
+.footer-text { 
+  font-weight: 500;
+}
+
  /* stickerform page */
  .sticker-form { 
    max-width: 400px;
