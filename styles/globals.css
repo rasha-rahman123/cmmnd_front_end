@@ -550,6 +550,11 @@ h5 {
     width: 80vw;
   }
 
+
+  .product-preview-title { 
+    width: 150px;
+  }
+
   .product-details { 
     margin-top: 20px;
   }
