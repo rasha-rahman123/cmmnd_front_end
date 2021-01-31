@@ -35,14 +35,14 @@ function ShopProvider(props) {
     },[])
 
     useEffect(() => { 
-      if(checkout.lineItems) { 
+      if(checkout && checkout.lineItems) { 
         const num = countTotalLineItems(checkout.lineItems)
         if ( num == 0 ) { 
           setIsCartOpen(false);
         }
       }
 
-      if(checkout.completedAt) { 
+      if(checkout && checkout.completedAt) { 
         createCheckout();
         setIsCartOpen(false)
       }
