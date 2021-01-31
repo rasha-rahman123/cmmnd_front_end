@@ -25,17 +25,10 @@ function Product(props) {
               width={[280, 220]}
             />
           ) : null}
-          {/* todo: default image in case  */}
           <div className="product-preview-title">
           <h3>{props.collection}</h3>
           <h3>{props.product.title}</h3>
           </div>
-          {/* <span className="Product__price">${variant.price}</span> */}
-          {/* {variantSelectors} */}
-          {/* <label className="Product__option">
-          Quantity
-          <input min="1" type="number" defaultValue={variantQuantity} onChange={this.handleQuantityChange}></input>
-        </label> */}
         </div>
       </a>
     </Link>

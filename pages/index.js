@@ -30,6 +30,10 @@ export default function Home() {
           }
         })
       }
+
+      else { 
+        window.alert("incorrect password")
+      }
   }
 
     // set is shop open to open

@@ -12,8 +12,15 @@ function Shop(){
   const router = useRouter();
   const pw = router.query.pw || '';
   
+
   // unravel all products in collections
-  const collectionsWithProducts = collections.map((collection) => { 
+  const sortedCollections = collections.sort(function(a,b){
+    // Turn your strings into dates, and then subtract them
+    // to get a value that is either negative, positive, or zero.
+    return new Date(b.updatedAt) - new Date(a.updatedAt);
+  });
+
+  const collectionsWithProducts = sortedCollections.map((collection) => { 
     if (collection.products.length != 0) { 
       return collection.products.map((product) => { 
         return (
@@ -32,7 +39,7 @@ function Shop(){
   if (!isShopOpen(pw)) content = <h2>Shop is not open yet</h2>
   else if (collections.length == 0) content = <h2>Collections are loading</h2>
   else content = (
-    <div className="shop-container">
+    <div className="grid-container">
       {collectionsWithProducts}
     </div>
   );
