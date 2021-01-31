@@ -14,10 +14,9 @@ const TopNav = (props) =>  {
     var navi = [
         { text: "Home", link: "/" },
         { text: "Shop", link: "/shop", under_construction: !isShopOpen() },
-        { text: "Archive", link: "/archive" , under_construction: true },
-        { text: "About", link: "/about" , home:true },
-        { text: "Contact", link: "mailto:contact@cmmnd.com" , home:true },
-        { text: "Stickers", link: "/stickerform" , home:true },
+        { text: "Music", link: "/music" , home:true},
+        { text: "Archive", link: "/archive" , under_construction: true, home:true },
+        // { text: "Stickers", link: "/stickerform" , home:true },
       ];
 
     if (props.splash) { 

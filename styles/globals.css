@@ -250,13 +250,13 @@ h5 {
   align-items: center;
   justify-content: left;
   width: 65%;
-  margin-top: 90px;
+  margin-top: 80px;
   max-height: 100px;
 }
 
 .home-icon { 
   margin-right: 15%;
-  padding-bottom: 40px;
+  padding-bottom: 24px;
 }
 
 .sub-nav { 
@@ -342,6 +342,23 @@ h5 {
   font-size: 6rem;
 }
 
+/* music page */
+.single-column-container { 
+  display: flex;
+  width: 600px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.music-description { 
+  margin: 20px;
+  width: 400px;
+  text-align: center;
+}
+
+.music-link { 
+  text-decoration: underline;
+}
 /* shop page */
 .grid-container {
   margin: 40px auto 0;
@@ -466,10 +483,10 @@ h5 {
 @media only screen and (max-width: 1025px) {
   .home-icon { 
     margin: 0;
-    padding-bottom: 10px;
+    padding-bottom: 35px;
   }
   .main-nav { 
-    margin-top: 4rem;
+    margin-top: 4.5rem;
   }
 }
 
@@ -493,10 +510,13 @@ h5 {
   }
 
   .sub-nav{ 
-    width: 250px;
+    width: 220px;
     flex-wrap: wrap;
   }
 
+  .footer .sub-nav  { 
+    width: 320px;
+  }
   .footer { 
     margin: 40px 0px;
   }
@@ -540,6 +560,15 @@ h5 {
   .product-container { 
     margin: 0px;
     margin-bottom: 30px;
+  }
+
+  .single-column-container { 
+    width: 320px;
+  }
+
+  .music-description { 
+    width: 300px;
+    font-size: .6rem;
   }
 
   .cart-checkout-container { 
