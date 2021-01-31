@@ -26,12 +26,12 @@ const Layout = ({ children }) => {
                 <title>CMMND</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className="main-nav">
-                <div className="home-icon">
+            <div className="home-icon">
                     <Link href="/">
                         <Image src='/cmmnd_logo.png' width={130}/>
                     </Link>
                 </div>
+            <div className="main-nav">
                 <div className="sub-nav"><TopNav/></div>
             </div>
             {children}

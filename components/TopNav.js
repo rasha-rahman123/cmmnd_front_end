@@ -19,7 +19,14 @@ const TopNav = (props) =>  {
         // { text: "Stickers", link: "/stickerform" , home:true },
       ];
 
+
     if (props.splash) { 
+        navi = [
+            { text: "About", link: "/about" , home:true },
+            { text: "Contact", link: "mailto:contact@cmmnd.com" , home:true },
+            { text: "Stickers", link: "/stickerform" , home:true },
+        ]
+        
         navi = navi.filter((el) => (el.home))
     }
 

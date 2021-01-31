@@ -224,8 +224,6 @@ h5 {
    transform: scale(0)
  }
 
-
- 
  .error {
    display: block;
    font-size: 15px;
@@ -248,14 +246,17 @@ h5 {
 .main-nav { 
   display: flex;
   align-items: center;
-  justify-content: left;
-  width: 65%;
+  justify-content: center;
+  width: 65vw;
   margin-top: 80px;
   max-height: 100px;
 }
 
 .home-icon { 
+  position:absolute;
   margin-right: 15%;
+  top: 40px;
+  left: 300px;
   padding-bottom: 24px;
 }
 
@@ -504,6 +505,7 @@ h5 {
     width: 400px;
   }
   .main-nav { 
+    padding-left: 45px;
     width: 100%;
   }
   .sub-nav{ 
@@ -520,6 +522,8 @@ h5 {
 
   .home-icon { 
     width: 100px;
+    top: 35px;
+    left: 25px;
   }
   .sub-nav h2 { 
     margin: 8px 10px;

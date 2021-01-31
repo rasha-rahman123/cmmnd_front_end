@@ -11,7 +11,7 @@ const Footer = () => {
         { text: "About", link: "/about" , home:true },
         { text: "Contact", link: "mailto:contact@cmmnd.com" , home:true },
         { text: "Stickers", link: "/stickerform" , home:true },
-        { text: "Terms", link: "/terms" , home:true },
+        { text: "Terms", link: "/terms" , home:true,  },
       ];
 
     const nav = navi.map((page, i) => (
