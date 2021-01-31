@@ -36,6 +36,12 @@ export default function Home() {
       }
   }
 
+  const enterSite = (e) => [ 
+    router.push({
+      pathname: "/shop"
+    })
+  ]
+
     // set is shop open to open
 
     // set the query to password field 
@@ -76,7 +82,8 @@ export default function Home() {
         <Button
           variant = 'secondary'
           sx={{ mb: 2, fontFamily: "Lekton", fontSize: 4, height: 30, border: 0, outline: 'none' }}
-          onClick={() => (showPass ? authSiteEnter : setShowPass(true))}
+          // onClick={() => (showPass ? authSiteEnter : setShowPass(true))}
+          onClick={() => (enterSite())}
         >
           ENTER
         </Button>

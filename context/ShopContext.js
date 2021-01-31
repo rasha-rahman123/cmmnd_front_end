@@ -52,11 +52,11 @@ function ShopProvider(props) {
     const isShopOpen = (ps) => {
       const pw = ps || router.query.pw || '';
 
-      if (pw === 'creativelabog') { 
-        return true;
-      }
+      // if (pw === 'creativelabog') { 
+      //   return true;
+      // }
       // todo: clear query
-      return false;
+      return true;
       
     }
 

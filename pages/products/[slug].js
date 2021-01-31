@@ -71,7 +71,7 @@ const Product = () => {
 
 
 // put something here for rendering the selectors 
-  if (loading || !product || !product.title || !product.options || !variant) return <div className='product-page'></div>
+  if (loading || !product || !product.title || !product.options || !product.description || !variant) return <div className='product-page'></div>
   else { 
     const selectors = product.options && product.options.map((option) => {
       return (
@@ -84,10 +84,56 @@ const Product = () => {
     }); 
 
     console.log(product.description)
-
-    const description = product.description && product.description.slice(1).split(' -').map((line) => { 
+    const descArray = product.description.split('~');
+    const description = descArray[0].slice(1).split(' -').map((line) => { 
       return <p>{`-${line}`}</p>
     });
+
+    var sizeArray, sizes, sizesNum, sizeChart;
+    if(descArray[1]) { 
+      sizeArray = descArray[1].split(' -');
+      sizes = sizeArray[1];
+      sizesNum = sizeArray.slice(2);
+
+      console.log(sizeArray)
+
+      sizeChart = <table cellspacing="0"  cellPadding="0" class="ks-table"> 
+        <tbody>
+          <tr className="table-row">
+            {/* labels */}
+            <td class="table-cell">{ ''}</td>
+            {sizes.split(',').map((size) => (<td className='table-cell'>{size}</td>))}
+          </tr>
+          {sizesNum.map((row) => ( 
+            <tr className="table-row">
+            {
+              row.split(',').map((num) => (<td className="table-cell">{num}</td>))
+            }
+            </tr>
+          ))}
+        </tbody>
+
+      </table>
+      
+      
+      
+    //   <table class="ks-table">
+    //   <tbody><tr class="ks-table-row">
+    //   <td class="ks-table-cell ks-table-header-cell"> </td>
+    
+    //   <td class="ks-table-cell ks-table-header-cell">S </td>
+    
+    //   <td class="ks-table-cell ks-table-header-cell">M </td>
+    
+    //   <td class="ks-table-cell ks-table-header-cell">L </td>
+    
+    //   <td class="ks-table-cell ks-table-header-cell">XL </td>
+    
+    //   <td class="ks-table-cell ks-table-header-cell">XXL </td>
+    // </tr></tbody>
+    // </table>
+    }
+
 
     return (
       <div className='product-page'>
@@ -107,6 +153,9 @@ const Product = () => {
           </h4>
           <div className="product-description">
           {description}
+          </div>
+          <div className="product-sizechart">
+            {sizeChart}
           </div>
           <div className='product-selectors'>
             {selectors}
