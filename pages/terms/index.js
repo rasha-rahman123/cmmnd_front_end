@@ -14,7 +14,8 @@ const Terms = () => {
         Shipping
         </h2>
         <p>
-        All items will be processed and shipped within a week of placing the order. If an item is stated as a preorder please allow 4-6 weeks for items to be shipped. Domestic items should arrive within 7 days after shipment confirmation is sent. International shipping, but are not responsible for any custom taxes. 
+        All items will be processed and shipped within a week of placing the order. If an item is stated as a preorder please allow 4-6 weeks for items to be shipped. Domestic items should arrive within 7 days after shipment confirmation is sent. International shipping takes up to 14 days after shipping confirmations.  We are not responsible for any custom taxes on international shipping 
+
         </p>
         <br/>
         <h2>

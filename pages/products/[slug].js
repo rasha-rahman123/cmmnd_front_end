@@ -83,6 +83,8 @@ const Product = () => {
       );
     }); 
 
+    console.log(product.description)
+
     const description = product.description && product.description.slice(1).split(' -').map((line) => { 
       return <p>{`-${line}`}</p>
     });
