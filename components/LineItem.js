@@ -39,6 +39,7 @@ function LineItem(props) {
             <p className="Line-item__price">
                 $ { (props.line_item.quantity * props.line_item.variant.price).toFixed(2) }
             </p>
+            {console.log("b")}
             <button className="text-button" onClick={()=> handleRemove(props.line_item.id)}><p>Remove</p></button>
             {/* </div> */}
         {/* </div> */}

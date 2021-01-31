@@ -66,6 +66,7 @@ function ShopProvider(props) {
 
     const createCheckout = async () => {
         const newCheckout = await client.checkout.create();
+        console.log("d")
         localStorage.setItem("checkout", newCheckout.id);
         setCheckout(newCheckout);
       };
@@ -86,6 +87,7 @@ function ShopProvider(props) {
             quantity: parseInt(quantity, 10),
           },
         ];
+        console.log("a")
         const check = await client.checkout.addLineItems(
           checkout.id,
           lineItemsToAdd

@@ -13,6 +13,7 @@ function Cart(){
     const pw = router.query.pw || '';
 
     let lineItems = checkout && checkout.lineItems && checkout.lineItems.map((item) => {
+      console.log("f")
       return (
         <LineItem
           key={item.id.toString()}

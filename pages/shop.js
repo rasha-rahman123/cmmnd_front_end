@@ -23,6 +23,7 @@ function Shop(){
   const collectionsWithProducts = sortedCollections.map((collection) => { 
     if (collection.products.length != 0) { 
       return collection.products.map((product) => { 
+        console.log("e")
         return (
           <Product
             collection={collection.title}

@@ -8,7 +8,7 @@ import Link from "next/link";
 function Product(props) {
   const router = useRouter();
   const query = router.query.pw;
-  
+  console.log("c")
   return (
     <Link 
       href={{
