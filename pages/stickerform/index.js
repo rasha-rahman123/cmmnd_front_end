@@ -36,14 +36,14 @@ function StickerForm() {
 
         var time = new Date().getTime();
         var date = new Date(time);
-        console.log(date.toString())
+        // console.log(date.toString())
 
         Object.keys(values).forEach(key => sheetsAPI.searchParams.append(key, values[key]))
         
         sheetsAPI.searchParams.set('time_stamp', date.toString());
         sheetsAPI.searchParams.set('zipcode', `'${values.zipcode}`)
 
-        console.log(sheetsAPI.searchParams)
+        // console.log(sheetsAPI.searchParams)
 
         const response = await fetch(sheetsAPI, { 
             method: "GET",

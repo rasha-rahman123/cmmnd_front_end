@@ -22,19 +22,21 @@ function ShopProvider(props) {
     const [collections, setCollections] = useState([]);
     const router = useRouter();
 
-    useEffect(() => {
+    useEffect(async () => {
         fetchAllCollections(); 
 
-        if (localStorage.checkout) {
-            fetchCheckout(localStorage.checkout);
-            setIsCartOpen(true);
+          if (localStorage.checkout) {
+            await fetchCheckout(localStorage.checkout);
+            if(checkout && checkout.id)
+              setIsCartOpen(true); 
+              else {
+                createCheckout();
+              }
           } 
-          else {
-            createCheckout();
-          }
     },[])
 
     useEffect(() => { 
+      // if there are lineitems
       if(checkout && checkout.lineItems) { 
         const num = countTotalLineItems(checkout.lineItems)
         if ( num == 0 ) { 
@@ -42,6 +44,7 @@ function ShopProvider(props) {
         }
       }
 
+      // if checkout was completed create a new one
       if(checkout && checkout.completedAt) { 
         createCheckout();
         setIsCartOpen(false)
@@ -122,7 +125,7 @@ function ShopProvider(props) {
           { id: lineItemId, quantity: parseInt(quantity, 10) },
         ];
         const check = await client.checkout.updateLineItems(checkoutId, lineItemsToUpdate)
-        console.log(check);
+        // console.log(check);
         setCheckout(check)
 
       }

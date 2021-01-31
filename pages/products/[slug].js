@@ -84,7 +84,7 @@ const Product = () => {
       );
     }); 
 
-    console.log(product.description)
+    // console.log(product.description)
     const descArray = product.description.split('~');
     const description = descArray[0].slice(1).split(' -').map((line) => { 
       return <p>{`-${line}`}</p>
@@ -96,7 +96,7 @@ const Product = () => {
       sizes = sizeArray[1];
       sizesNum = sizeArray.slice(2);
 
-      console.log(sizeArray)
+      // console.log(sizeArray)
 
       sizeChart = <table cellspacing="0"  cellPadding="0" class="ks-table"> 
         <tbody>
