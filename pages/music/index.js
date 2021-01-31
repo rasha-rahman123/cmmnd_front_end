@@ -17,11 +17,11 @@ const Music = () => {
     return <div className="single-column-container">
         <Image src='/music_profile.jpeg' marginTop={30} width={[350,600]}/>
         <div className="music-description">
-        <p>CMMND music consists of okay coleman!, Seiji Oda, and sleepyboybryan</p>
-        <br/>
-        <p>Discography:</p>
-        <p>CMMND EP (2019)</p>
-        <p>Sum Light - Single (2020)</p>
+            <p>CMMND music consists of okay coleman!, Seiji Oda, and sleepyboybryan</p>
+            <br/>
+            <p>Discography:</p>
+            <p>CMMND EP (2019)</p>
+            <p>Sum Light - Single (2020)</p>
         </div>
         <div className="sub-nav">
             {navi.map((el) => ( 
