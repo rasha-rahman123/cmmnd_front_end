@@ -15,6 +15,7 @@
     "nookies": "^2.5.0",
     "postprocessing": "^6.18.0",
     "react": "17.0.1",
+    "react-contentful": "^2.0.31",
     "react-dom": "17.0.1",
     "react-load-script": "0.0.6",
     "react-markdown": "^5.0.3",

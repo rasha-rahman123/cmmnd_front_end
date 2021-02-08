@@ -15,7 +15,7 @@ const TopNav = (props) =>  {
         { text: "Home", link: "/" },
         { text: "Shop", link: "/shop", under_construction: !isShopOpen() },
         { text: "Music", link: "/music" , home:true},
-        { text: "Archive", link: "/archive" , under_construction: true, home:true },
+        { text: "Archive", link: "/archives" , home:true },
         // { text: "Stickers", link: "/stickerform" , home:true },
       ];
 
@@ -43,15 +43,16 @@ const TopNav = (props) =>  {
     var cart = null;
     // todo: close cart if it is open and empty ? 
     if(checkout && checkout.lineItems) {
-
+        const itemslen = countTotalLineItems(checkout.lineItems);
         if (!isCartOpen || !isShopOpen()) { 
             cart = null;
-        } 
+        } else if (itemslen == 0) { 
+            cart = null;
+        }
         else { 
-            const itemslen = countTotalLineItems(checkout.lineItems);
             cart = <Link href={`/cart?pw=${pw}`}>
             <a>
-                <h2 class='shopping-cart-nav'>{`Cart(${itemslen})`}</h2>
+                <h2 className='shopping-cart-nav'>{`Cart(${itemslen})`}</h2>
             </a>
             </Link>
         }

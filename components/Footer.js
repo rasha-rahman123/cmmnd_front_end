@@ -4,7 +4,7 @@ import {Image} from "rebass";
 
 
 const Footer = () => { 
-    const router = useRouter()
+    const router = useRouter();
     const pw = router.query.pw || '';
 
     var navi = [

@@ -95,6 +95,10 @@ h5 {
  
  /* BASE APP
   * ============================== */
+
+.hide { 
+  visibility: hidden;
+}
  .App__header {
   
    background-size: cover;
@@ -369,18 +373,41 @@ h5 {
 }
 /* shop page */
 .grid-container {
-  margin: 40px auto 0;
+  margin: 70px auto 0;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%; 
   width: 1200px;
+  min-height: 50vh;
+  justify-items: center;
+  /* align-items: center; */
 }
 
 /* product component */
 .product-container { 
+  position: relative;
   margin: 25px 40px;
 }
 
+.product-image-container { 
+  position: relative;
+}
+
+.not-available { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* display: none; */
+  /* color: #FFF; */
+  background: rgba(255, 255, 255, .7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .product-preview-title { 
+  margin: 12px 0px;
   width: 200px;
 }
 
@@ -451,7 +478,43 @@ h5 {
   grid-column-start: 2;
 }
 
+/* archive gallery page */
+.gallery-view-container{ 
+  top:0;
+  left:0;
 
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(214, 214, 214);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gallery-button { 
+  cursor: pointer;
+  background: transparent;
+  border:none;
+}
+
+.gallery-button.chevron { 
+  margin: 0px 25px;
+  width: 100px;
+}
+.gallery-button.right.chevron { 
+  transform: rotate(180deg);
+}
+
+.close { 
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 40px;
+  width: 70px;
+}
 /* COMPONENTS */
 
 /* line-item */
@@ -492,6 +555,7 @@ h5 {
 
 .secondary-images-container { 
   display: grid;
+  align-items: center;
   grid-template-columns: 25% 25% 25% 25%;
 }
 
@@ -563,7 +627,7 @@ h5 {
   }
 
   .grid-container {
-    margin: 10px;
+    margin: 40px 10px;
     /* display: block; */
     grid-template-columns: 50% 50%;
     width: 85vw;
@@ -592,8 +656,8 @@ h5 {
   }
 
   .product-container { 
-    margin: 0px;
-    margin-bottom: 30px;
+    margin: 0px 0px 30px 0px;
+    /* margin-bottom: 30px; */
   }
 
   .single-column-container { 
@@ -607,6 +671,17 @@ h5 {
 
   .cart-checkout-container { 
     width: 85vw;
+  }
+
+  .gallery-button.chevron { 
+    margin: 0px;
+    width: 100px;
+  }
+
+
+  .close { 
+    margin: 28px;
+    width: 50px;
   }
 
   .cart-labels.cart-grid { margin-top: 30px;}
