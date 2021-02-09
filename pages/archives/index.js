@@ -3,7 +3,7 @@ import {useRouter} from "next/router";
 import {useState} from "react";
 import { useContentful } from 'react-contentful';
 import {Image} from 'rebass';
-import Archive from '../../components/Archive/Archive';
+// import Archive from '../../components/Archive/Archive';
 
 const ArchivePage = () => { 
     const router = useRouter();
@@ -41,8 +41,8 @@ const ArchivePage = () => {
         // const ratio = size.width/size.height;
         // const width = ratio > 1 ? 280 : 180;
         return <Link href={{
-            pathname: `/archives`,
-            query: {title:title, id:item.sys.id, pw: pw },
+            pathname: `/archive/${title}`,
+            query: {id:item.sys.id, pw: pw },
           }}
             shallow={true}
           >
@@ -64,10 +64,10 @@ const ArchivePage = () => {
         </Link>
     })
 
-    const activeArchive = id && <Archive id={id} title={archiveTitle}/>
+    // const activeArchive = id && <Archive id={id} title={archiveTitle}/>
 
     return <div className="grid-container"> 
-        {activeArchive || archives}
+        {archives}
     </div>
 
 }

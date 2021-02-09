@@ -4,50 +4,41 @@ import {Image} from 'rebass';
 
 import {useRouter} from "next/router";
 
-const Archive = ({id, title}) => { 
+const ArchiveGallery = ({images, startingIndex, closeGallery}) => { 
 
     const router = useRouter();
     const {password} = router.query
     // active image index
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(startingIndex);
 
-    const { data, error, fetched, loading } = useContentful({
-        id: id,
-    });
+    // const { data, error, fetched, loading } = useContentful({
+    //     id: id,
+    // });
 
 
-    if (loading || !fetched) {
-        return null;
-    }
+    // if (loading || !fetched) {
+    //     return null;
+    // }
 
-    if (error) {
-        console.error(error);
-        return null;
-    }
+    // if (error) {
+    //     console.error(error);
+    //     return null;
+    // }
 
-    if (!data) {
-        return <p>Error loading {title}, please try again later</p>;
-    } 
+    // if (!data) {
+    //     return <p>Error loading {title}, please try again later</p>;
+    // } 
 
     const getNextImage = (val) => {
         setActiveIndex(val);
     }
 
-    const closeArchive = () => {
-        router.push({
-            pathname: "/archives",
-            query: {
-              pw: password,
-            }, 
-            shallow: true
-        })
-    }
 
-    const images = data.fields.images;
+    // const images = data.fields.images;
     const currentImageSrc = images[activeIndex].fields.file.url;
     
     return <div className="gallery-view-container">
-        <button onClick={closeArchive} className="gallery-button close">
+        <button onClick={closeGallery} className="gallery-button close">
             <Image  
                 sx={{
                     width: ['100%']
@@ -63,4 +54,4 @@ const Archive = ({id, title}) => {
 }
 
 
-export default Archive;
+export default ArchiveGallery;
