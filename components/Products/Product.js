@@ -8,7 +8,10 @@ import Link from "next/link";
 function Product(props) {
   const router = useRouter();
   const query = router.query.pw;
-  console.log("c")
+
+  const available = props.product.availableForSale;
+  console.log(props.product)
+
   return (
     <Link 
       href={{
@@ -17,7 +20,11 @@ function Product(props) {
       }}
     >
       <a>
-        <div className="product-container" key={props.product.title + Math.random() + ""}>
+        <div className={`product-container`} key={props.product.title + Math.random() + ""}>
+          <div className="product-image-container">
+          {!available && <div className="not-available">
+            <h3>sold out</h3>  
+          </div>}
           {props.product.images.length ? (
             <Image
               src={props.product.images[0].src}
@@ -25,6 +32,7 @@ function Product(props) {
               width={[280, 220]}
             />
           ) : null}
+          </div>
           <div className="product-preview-title">
           <h3>{props.collection}</h3>
           <h3>{props.product.title}</h3>

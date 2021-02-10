@@ -74,7 +74,6 @@ const Product = () => {
   if (loading || !product || !product.title || !product.options || !product.description || !variant) return <div className='product-page'></div>
   else { 
     const selectors = product.options && product.options.map((option) => {
-      console.log("f")
       return (
         <Selector
           handleOptionChange={handleOptionChange}

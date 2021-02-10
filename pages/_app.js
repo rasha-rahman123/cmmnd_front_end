@@ -7,15 +7,24 @@ import "../styles/globals.css";
 
 import ShopProvider from "../context/ShopContext";
 
+import { ContentfulClient, ContentfulProvider } from 'react-contentful';
+
+const contentfulClient = new ContentfulClient({
+  accessToken: 'muPYGj2Owz5K_JLsoL0sabeHDyLwtCk3P6UBXAHn068',
+  space: 's7bsoy8h4huv',
+});
+
 function MyApp({ Component, pageProps, articles}) {
 
   return (
     <ShopProvider>
-      <ThemeProvider theme={theme}>
-        <Layout>
-        <Component  {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <ContentfulProvider client={contentfulClient}>
+        <ThemeProvider theme={theme}>
+          <Layout>
+          <Component  {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </ContentfulProvider>
     </ShopProvider>
   );
 }

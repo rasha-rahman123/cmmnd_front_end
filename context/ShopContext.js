@@ -27,12 +27,7 @@ function ShopProvider(props) {
 
           if (localStorage.checkout) {
             await fetchCheckout(localStorage.checkout);
-            if(checkout && checkout.id){
-              setIsCartOpen(true); }
-              else {
-                createCheckout();
-              }
-          }   else {
+          } else { 
             createCheckout();
           }
     },[])
@@ -43,7 +38,11 @@ function ShopProvider(props) {
         const num = countTotalLineItems(checkout.lineItems)
         if ( num == 0 ) { 
           setIsCartOpen(false);
+        } else { 
+          setIsCartOpen(true); 
         }
+      } else { 
+        setIsCartOpen(false)
       }
 
       // if checkout was completed create a new one
@@ -71,7 +70,6 @@ function ShopProvider(props) {
 
     const createCheckout = async () => {
         const newCheckout = await client.checkout.create();
-        console.log("d")
         localStorage.setItem("checkout", newCheckout.id);
         setCheckout(newCheckout);
       };
@@ -82,7 +80,9 @@ function ShopProvider(props) {
           .then((result) => {
            setCheckout(result)
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            localStorage.setItem("checkout", null);
+            alert("Error finding your cart, please try again later", err)});
       };
       
     const addItemToCheckout = async (variantId, quantity) => {
@@ -92,7 +92,6 @@ function ShopProvider(props) {
             quantity: parseInt(quantity, 10),
           },
         ];
-        console.log("a")
         const check = await client.checkout.addLineItems(
           checkout.id,
           lineItemsToAdd

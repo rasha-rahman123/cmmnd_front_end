@@ -3,6 +3,10 @@ import React, { Component, useState, useCallback, useEffect, useContext } from "
 // import * as THREE from "three";
 import Product from "../components/Products/Product";
 import { ShopContext } from "../context/ShopContext";
+import { useContentful } from 'react-contentful';
+import Link from 'next/link';
+
+import {Image} from 'rebass'
 
 // import { useFrame, Canvas } from "react-three-fiber";
 
@@ -11,7 +15,42 @@ function Shop(){
   const {collections, isShopOpen} = useContext(ShopContext);
   const router = useRouter();
   const pw = router.query.pw || '';
-  
+
+  const { data  } = useContentful({
+    contentType: 'archive',
+    query: {
+        'fields.magazine': true
+    }
+  });
+
+
+  var magazineImage, magazineID, magazine = null; 
+
+  if(data) { 
+      // map
+      data.items.map((mag) => { 
+        magazineImage = mag.fields.images[0].fields.file.url;
+        magazineID = mag.sys.id;
+        magazine = 
+          <Link href={{
+              pathname: `/archive/${mag.fields.title}`,
+              query: {id:magazineID, pw: pw },
+          }}>
+            <a>
+              <div className="product-container">
+                <div className="product-image-container magazine">
+                  <Image src={magazineImage} width={[280, 220]} />
+                </div>
+                <div className="product-preview-title">
+                  <h3>{mag.fields.title}</h3>
+                  <h3>{mag.fields.timeFrame}</h3>
+                  </div>
+              </div>
+            </a>
+          </Link>
+      })
+    
+  }
 
   // unravel all products in collections
   const sortedCollections = collections.sort(function(a,b){
@@ -23,7 +62,7 @@ function Shop(){
   const collectionsWithProducts = sortedCollections.map((collection) => { 
     if (collection.products.length != 0) { 
       return collection.products.map((product) => { 
-        console.log("e")
+        
         return (
           <Product
             collection={collection.title}
@@ -42,6 +81,7 @@ function Shop(){
   else content = (
     <div className="grid-container">
       {collectionsWithProducts}
+      {magazine}
     </div>
   );
 

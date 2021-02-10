@@ -3,6 +3,7 @@ import React, {Component, useContext, useEffect} from 'react';
 import { Box } from 'rebass';
 import { ShopContext } from '../../context/ShopContext';
 import LineItem from '../../components/LineItem';
+import {countTotalLineItems} from '../../context/utils';
 
 function Cart(){
   function openCheckout() {
@@ -13,7 +14,6 @@ function Cart(){
     const pw = router.query.pw || '';
 
     let lineItems = checkout && checkout.lineItems && checkout.lineItems.map((item) => {
-      console.log("f")
       return (
         <LineItem
           key={item.id.toString()}
@@ -23,15 +23,15 @@ function Cart(){
     });
 
     // if cart is not open then redirect
-    useEffect(() => { 
-      if(!isCartOpen) { 
+    useEffect(() => {
+      const itemslen = checkout && checkout.lineItems && countTotalLineItems(checkout.lineItems); 
+      if(!isCartOpen && itemslen == 0) { 
         router.push({
           pathname: "/shop",
           query: {
             pw: pw,
           }
         })
-        
       } 
     }, [isCartOpen])
 

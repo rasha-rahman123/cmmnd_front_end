@@ -114,11 +114,11 @@ function StickerForm() {
     
     const stickerPage = () => ( 
         <div class="stickerform-container">
-            <h3>Free Sticker Form</h3>
+            <h3>Free Sticker Form*</h3>
 
             {form()}
             <br></br>
-            <p>***if you submit for a free sticker you are accepting emails about future CMMND releases and promotion</p>
+            <p>*By pressing submit, you are agreeing to be added to our email list featuring news about CMMND releases and promotions</p>
             <br></br>
         </div>
     )
