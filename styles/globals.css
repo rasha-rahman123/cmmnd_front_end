@@ -356,6 +356,7 @@ h5 {
   font-size: 6rem;
 }
 
+
 /* music page */
 .single-column-container { 
   display: flex;
@@ -510,6 +511,7 @@ h5 {
 /* single archive page */
 .single-archive-page { 
   width: 1200px;
+  min-height:50vh;
   margin: 80px auto 0;
 }
 
@@ -568,6 +570,11 @@ h5 {
   right: 0;
   margin: 40px;
   width: 70px;
+}
+
+/* contact */
+.contact-container { 
+  margin: 5rem;
 }
 /* COMPONENTS */
 
@@ -742,6 +749,7 @@ h5 {
 
   .single-archive-page { 
     width: 85vw;
+    min-height: 50vh;
     margin: 40px 0px;
   }
     
