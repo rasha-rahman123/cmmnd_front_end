@@ -392,7 +392,7 @@ h5 {
   /* object-fit: cover; */
   display: grid;
   grid-template-rows: auto 30%;
-  justify-items: center;
+  /* justify-items: center; */
   /* height: 300px; */
 }
 
@@ -504,7 +504,7 @@ h5 {
 }
 
 .archive-image.horizontal img { 
-  height: 157px;
+  height: 150px;
   width: 200px;
 }
 /* single archive page */
@@ -736,8 +736,8 @@ h5 {
   }
   
   .archive-image.horizontal img { 
-    height: 100px;
-    width: 150px;
+    height: 90px;
+    width: 140px;
   }
 
   .single-archive-page { 
