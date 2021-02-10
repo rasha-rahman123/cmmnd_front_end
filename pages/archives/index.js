@@ -38,8 +38,8 @@ const ArchivePage = () => {
         const image = item.fields.mainImage || item.fields.images[0];
         const {title,timeFrame} = item.fields;
         const size = image.fields.file.details.image;
-        // const ratio = size.width/size.height;
-        // const width = ratio > 1 ? 280 : 180;
+        const ratio = size.width/size.height;
+        const horizontal = ratio > 1 ? 'horizontal' : '';
         return <Link href={{
             pathname: `/archive/${title}`,
             query: {id:item.sys.id, pw: pw },
@@ -48,13 +48,16 @@ const ArchivePage = () => {
           >
             <a>
                 <div className="product-container">
+                    <div className={`archive-image ${horizontal}`}>
                     {image ? (
-                        <Image
+                        <img
                         src={image.fields.file.url}
                         alt={`${title} archive image`}
-                        width={[140, 200]}
+                        // width={[140, 200]}
+                        // height={height}
                         />
                     ) : null}
+                    </div>
                     <div className="product-preview-title">
                     <h3>{timeFrame}</h3>
                     <h3>{title}</h3>

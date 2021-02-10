@@ -300,6 +300,7 @@ h5 {
 
 .footer-text { 
   font-weight: 500;
+  font-size: 1.5rem;
 }
 
  /* stickerform page */
@@ -388,6 +389,11 @@ h5 {
   cursor: pointer;
   position: relative;
   margin: 25px 40px;
+  /* object-fit: cover; */
+  display: grid;
+  grid-template-rows: auto 30%;
+  justify-items: center;
+  /* height: 300px; */
 }
 
 .magazine.product-image-container  { 
@@ -484,6 +490,23 @@ h5 {
   grid-column-start: 2;
 }
 
+/* archive images */
+
+.archive-image { 
+  display:flex;
+  align-items: center;
+  height: 210px;
+}
+.archive-image img { 
+  width: 157px;
+  height: 210px;
+  object-fit: cover;
+}
+
+.archive-image.horizontal img { 
+  height: 157px;
+  width: 200px;
+}
 /* single archive page */
 .single-archive-page { 
   width: 1200px;
@@ -504,8 +527,12 @@ h5 {
   margin: 0px 40px;
 }
 
+.archive-description-text { 
+  font-weight: 400;
+}
 
 /* archive gallery page */
+
 .gallery-view-container{ 
   top:0;
   left:0;
@@ -654,7 +681,7 @@ h5 {
   }
 
   .grid-container {
-    margin: 40px 10px;
+    /* margin: 40px 10px; */
     /* display: block; */
     grid-template-columns: 50% 50%;
     width: 85vw;
@@ -698,6 +725,19 @@ h5 {
 
   .cart-checkout-container { 
     width: 85vw;
+  }
+
+  .archive-image { 
+    height: 180px;
+  }
+  .archive-image img { 
+    width: 135px;
+    height: 180px;
+  }
+  
+  .archive-image.horizontal img { 
+    height: 100px;
+    width: 150px;
   }
 
   .single-archive-page { 

@@ -66,10 +66,10 @@ const Archive = () => {
                             <h3>{title}</h3>
                             <h3>{timeFrame}</h3>
                             <br/>
-                            <h3>{description}</h3>
+                            <h3 className="archive-description-text">{description}</h3>
                         </div>
                         <div>
-                        {collaborators.split(';').map((collaborator) => (<h3 className="archive-collaborators">{collaborator}</h3>))}
+                        {collaborators.split(';').map((collaborator) => (<h3 className="archive-collaborators archive-description-text">{collaborator}</h3>))}
                         </div>
                     </div>
                     <div className="grid-container"> 
