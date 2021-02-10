@@ -1,6 +1,6 @@
 import {useRouter} from "next/router";
 import {useState, useEffect} from "react";
-// import { useContentful } from 'react-contentful';
+
 import {Image} from 'rebass';
 import { Query } from 'react-contentful';
 import ArchiveGallery from '../../components/Archive/ArchiveGallery';
@@ -32,16 +32,16 @@ const Archive = () => {
     >
         {({data, error, fetched, loading}) => {
             if (loading || !fetched) {
-                return null;
+                return <div className="single-archive-page"></div>;
             }
 
             if (error) {
                 console.error(error);
-                return null;
+                return <div className="single-archive-page"><p>There was an error loading archives.</p></div>;
             }
 
             if (!data) {
-                return <p>Page does not exist.</p>;
+                return <div className="single-archive-page"><p>Page does not exist.</p></div>;
             }
 
             // See the Contentful query response

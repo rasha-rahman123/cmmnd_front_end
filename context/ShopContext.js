@@ -3,6 +3,7 @@ import {useRouter} from 'next/router'
 import './utils'
 import Client from 'shopify-buy'
 import { countTotalLineItems } from './utils';
+import { create } from 'react-test-renderer';
 
 // makes requests
 // changes values in context
@@ -22,13 +23,13 @@ function ShopProvider(props) {
     const [collections, setCollections] = useState([]);
     const router = useRouter();
 
-    useEffect(async () => {
+    useEffect(async() => {
         fetchAllCollections(); 
 
           if (localStorage.checkout) {
             await fetchCheckout(localStorage.checkout);
           } else { 
-            createCheckout();
+            await createCheckout();
           }
     },[])
 
@@ -79,10 +80,14 @@ function ShopProvider(props) {
           .fetch(checkoutId)
           .then((result) => {
            setCheckout(result)
+           return true;
           })
           .catch((err) => {
-            localStorage.setItem("checkout", null);
-            alert("Error finding your cart, please try again later", err)});
+            createCheckout();
+            console.log(err)
+            alert("Error finding your cart, please try again later", err)
+          });
+        
       };
       
     const addItemToCheckout = async (variantId, quantity) => {

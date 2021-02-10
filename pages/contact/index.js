@@ -1,9 +1,9 @@
 
 import { Query } from 'react-contentful';
 
-const Terms = () => { 
+const Contact = () => { 
     return <Query
-        contentType="terms"
+        contentType="contact"
     >
         {({data, error, fetched, loading}) => {
             if (loading || !fetched) {
@@ -19,22 +19,20 @@ const Terms = () => {
                 return <p>Terms not available</p>;
             }
 
-            const {title, returnsAndExchanges, shipping, privacy} = data.items[0].fields;
-
+            const {title, links} = data.items[0].fields;
+            console.log(links)
             // Process and pass in the loaded `data` necessary for your page or child components.
             return (
-                <div className="stickerform-container">
-                <h1>{title}</h1>
-                <br/><br/>
-                {returnsAndExchanges ? <> <h2>Returns and Exchanges</h2> <p>{returnsAndExchanges}</p> </> : null}
+                <div className="contact-container">
+                <h1>{title}</h1>    
                 <br/>
-                {shipping ? <><h2>Shipping</h2> <p>{shipping}</p></> : null}
-                <br/>
-                {privacy ? <> <h2>Privacy</h2> <p>{privacy}</p></> : null}
+                {
+                    Object.keys(links).map((link) => (<a href={`mailto:${links[link]}`}><p><u>{link}</u></p></a>))
+                }
                 </div>
             );
         }}
     </Query> 
 }
 
-export default Terms;
+export default Contact;
