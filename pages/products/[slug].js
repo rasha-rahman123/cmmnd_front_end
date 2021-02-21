@@ -36,18 +36,14 @@ const Product = () => {
 
   useEffect(() => { 
     if (product && product.options && product.variants) { 
+      // set the options
       product.options.forEach((selector) => {
+        // set the default option to the first one
         defaultOptionValues[selector.name] = selector.values[0].value;
       });
   
       setOptions(defaultOptionValues);
-      // find variants that are in stock
-      const variantsInStock = product.variants.filter((v) => v.available)
-      if(variantsInStock.length > 0) { 
-        setVariant(variantsInStock[0]);
-      } else { 
-        setVariant(product.variants[0]);
-      }
+      setVariant(product.variants[0]);
     }
   },[product])
 
@@ -134,6 +130,8 @@ const Product = () => {
     // </table>
     }
 
+    const outOfStock = "Out of stock";
+
 
     return (
       <div className='product-page'>
@@ -162,7 +160,7 @@ const Product = () => {
           </div>
           <div className='product-buttons'>
           {variant.available ? <button className="button" onClick={() => addItemToCart(variant.id)}><b>ADD TO CART</b></button> :  
-          <h2>Out of stock</h2>}
+          <h2>{outOfStock}</h2>}
           </div>
         </div>
       </div>

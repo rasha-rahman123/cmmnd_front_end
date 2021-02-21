@@ -1,7 +1,9 @@
 
 import { Query } from 'react-contentful';
+import ReactMarkdown from "react-markdown/with-html";
 
 const Terms = () => { 
+
     return <Query
         contentType="terms"
     >
@@ -26,11 +28,11 @@ const Terms = () => {
                 <div className="stickerform-container">
                 <h1>{title}</h1>
                 <br/><br/>
-                {returnsAndExchanges ? <> <h2>Returns and Exchanges</h2> <p>{returnsAndExchanges}</p> </> : null}
+                {returnsAndExchanges ? <> <h2>Returns and Exchanges</h2> <p><ReactMarkdown escapeHtml={false} source={returnsAndExchanges} /></p> </> : null}
                 <br/>
-                {shipping ? <><h2>Shipping</h2> <p>{shipping}</p></> : null}
+                {shipping ? <><h2>Shipping</h2> <p><ReactMarkdown escapeHtml={false} source={shipping} /></p></> : null}
                 <br/>
-                {privacy ? <> <h2>Privacy</h2> <p>{privacy}</p></> : null}
+                {privacy ? <> <h2>Privacy</h2> <p><ReactMarkdown escapeHtml={false} source={privacy} /></p></> : null}
                 </div>
             );
         }}
