@@ -66,7 +66,7 @@ const Scene = () => {
     <Letter url="d" id={Math.random()} color="#454746" position={[1, 4, 0]} rotation={[Math.random()*Math.PI/6*(Math.random() < 0.5 ? -1 : 1), Math.random()*-Math.PI/6*(Math.random() < 0.5 ? -1 : 1), 0]} />
   ]);
   // ------CHANGE RANDOMIZED COLORS HERE------
-  const colors = ["#2774AE", "#FFC72C"];
+  const colors = ["#848986", "#b5bab6"];
 
   const start = useRef(false);
   // useFrame executes every frame
