@@ -10,7 +10,6 @@ function Product(props) {
   const query = router.query.pw;
 
   const available = props.product.availableForSale;
-  console.log(props.product)
 
   return (
     <Link 

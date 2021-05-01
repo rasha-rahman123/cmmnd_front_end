@@ -25,7 +25,6 @@ function ShopProvider(props) {
 
     useEffect(async() => {
         fetchAllCollections(); 
-
           if (localStorage.checkout) {
             await fetchCheckout(localStorage.checkout);
           } else { 
@@ -33,6 +32,7 @@ function ShopProvider(props) {
           }
     },[])
 
+    // updates when checkout is changed 
     useEffect(() => { 
       // if there are lineitems
       if(checkout && checkout.lineItems) { 
@@ -43,14 +43,17 @@ function ShopProvider(props) {
           setIsCartOpen(true); 
         }
       } else { 
-        setIsCartOpen(false)
+        setIsCartOpen(false);
       }
 
+      console.log(checkout)
       // if checkout was completed create a new one
-      if(checkout && checkout.completedAt) { 
+      if(checkout && (checkout.completedAt) ) { 
         createCheckout();
         setIsCartOpen(false)
       }
+  
+      // if checkout was expired? 
     }, [checkout])
 
     // check if the password query is set, if yes allow shop 
@@ -84,8 +87,10 @@ function ShopProvider(props) {
           })
           .catch((err) => {
             createCheckout();
-            console.log(err)
-            alert("Error finding your cart, please try again later", err)
+            setIsCartOpen(false);
+            //make cart empty? 
+            console.log(err);
+            alert("Error finding your cart, please try again later", err);
           });
         
       };
@@ -101,6 +106,15 @@ function ShopProvider(props) {
           checkout.id,
           lineItemsToAdd
         );
+
+        if((check && check.errors) || !check) { 
+          createCheckout();
+          setIsCartOpen(false);
+          alert("Error adding to cart, please refresh the page and try again");
+        }
+        
+        console.log(check, "ccc")
+        // if there's an error adding to checkout
         setCheckout(check)
         setIsCartOpen(true);
       };
@@ -157,7 +171,6 @@ function ShopProvider(props) {
           clearProduct,
           fetchAllProducts, 
           fetchAllCollections,
-          fetchCheckout, 
           fetchProductWithId, 
           addItemToCheckout, 
           updateQuantityInCart, 
