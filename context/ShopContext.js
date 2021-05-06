@@ -102,6 +102,13 @@ function ShopProvider(props) {
             quantity: parseInt(quantity, 10),
           },
         ];
+
+        // checkout is not valid anymore 
+        if (!checkout || !checkout.id){ 
+          await createCheckout();
+          setIsCartOpen(false);
+        }
+
         const check = await client.checkout.addLineItems(
           checkout.id,
           lineItemsToAdd
