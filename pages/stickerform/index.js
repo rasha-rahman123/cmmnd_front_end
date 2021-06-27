@@ -25,25 +25,14 @@ function StickerForm() {
 
     const handleSubmit = async (e) => { 
         e.preventDefault();
-        // set timestamp
-        // await setValues((values) => ({
-        //     ...values, 
-        //     zipcode: `'${values.zipcode}`,
-        //     time_stamp: Date.now()
-        // }));
-
-        // console.log(values.time_stamp, "tiemeiefj")
 
         var time = new Date().getTime();
         var date = new Date(time);
-        // console.log(date.toString())
 
         Object.keys(values).forEach(key => sheetsAPI.searchParams.append(key, values[key]))
         
         sheetsAPI.searchParams.set('time_stamp', date.toString());
         sheetsAPI.searchParams.set('zipcode', `'${values.zipcode}`)
-
-        // console.log(sheetsAPI.searchParams)
 
         const response = await fetch(sheetsAPI, { 
             method: "GET",

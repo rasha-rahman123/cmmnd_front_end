@@ -119,7 +119,6 @@ function ShopProvider(props) {
           { id: lineItemId, quantity: parseInt(quantity, 10) },
         ];
         const check = await client.checkout.updateLineItems(checkoutId, lineItemsToUpdate)
-        // console.log(check);
         setCheckout(check)
 
       }
@@ -157,7 +156,6 @@ function ShopProvider(props) {
         return true;
       }
       const pw = router.query.pw || ps || '';
-      console.log(pw)
       if (pw === expPW) { 
         return true;
       } 

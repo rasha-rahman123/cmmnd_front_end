@@ -20,7 +20,6 @@ const Contact = () => {
             }
 
             const {title, links} = data.items[0].fields;
-            console.log(links)
             // Process and pass in the loaded `data` necessary for your page or child components.
             return (
                 <div className="contact-container">

@@ -52,11 +52,13 @@ function Shop(){
     
   }
 
-  // unravel all products in collections
+  // sort collections by recent
   const sortedCollections = collections.sort(function(a,b){
+    if(parseInt(a.description) < parseInt(b.description)) { return -1; }
+    if(parseInt(a.description) > parseInt(b.description)) { return 1; }
     // Turn your strings into dates, and then subtract them
     // to get a value that is either negative, positive, or zero.
-    return new Date(b.updatedAt) - new Date(a.updatedAt);
+    // return new Date(b.updatedAt) - new Date(a.updatedAt);
   });
 
   const collectionsWithProducts = sortedCollections.map((collection) => { 
