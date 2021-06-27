@@ -7,9 +7,8 @@ import {Image} from 'rebass';
 
 const ArchivePage = () => { 
     const router = useRouter();
-    const {pw, id, archiveTitle} = router.query;
+    const {pw} = router.query;
 
-    // const [archives, setArchives] = useState([])
     const { data, error, fetched, loading } = useContentful({
         contentType: 'archive',
         query: {

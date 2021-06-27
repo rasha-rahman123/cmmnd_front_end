@@ -6,20 +6,6 @@ const Gallery = ({images}) => {
 
 
     const [activeIndex, setActiveIndex] = useState(0);
-    // const { data  } = useContentful({
-    //     contentType: 'archive',
-    //     query: {
-    //         'fields.magazine': true
-    //     }
-    // });
-
-
-    // var magazineImage, magazineID = null; 
-
-    // if(data) { 
-    //     magazineImage = data.items[0].fields.images[0].fields.file.url;
-    //     magazineID = data.items[0].sys.id;
-    // }
 
 
     return ( 

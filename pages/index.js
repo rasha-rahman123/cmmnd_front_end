@@ -1,28 +1,46 @@
 import { Canvas } from "react-three-fiber";
-import styles from "../styles/Home.module.css";
 import { useRef, useState, useContext } from "react";
 import { Input, Label } from "@rebass/forms";
 import { Box, Button, Image } from "rebass";
 import { useRouter } from "next/router";
 import Scene from '../components/Scene.js';
 import TopNav from '../components/TopNav.js';
-import {ShopContext} from '../context/ShopContext'
+import {ShopContext} from '../context/ShopContext';
+import { useContentful } from 'react-contentful';
 
 
 export default function Home() {
 
   const inputRef = useRef();
-  const [alert, setAlert] = useState();
-  const [showPass, setShowPass] = useState(false);
   const [password, setPassword] = useState("");
 
   const {isShopOpen} = useContext(ShopContext)
   const router = useRouter();
 
+  const {data, error, fetched, loading} = useContentful({
+    contentType: 'password'
+  });
+
+  if (loading || !fetched) {
+      return <div className="blank">loading</div>;
+  }
+
+  if (error) {
+      console.error("error", error);
+      return <div className="blank">error</div>;
+  }
+
+  if (!data) {
+      return <p>Error leading landing, please try again later</p>;
+  } 
+
+  const showPass = data.items[0].fields.passwordActive;
+
+
   const authSiteEnter = async (e) => {
       const open = isShopOpen(password)
 
-      if( open ) {
+      if(open) {
         router.push({
           pathname: "/shop",
           query: {
@@ -50,7 +68,7 @@ export default function Home() {
 
 //zIndex: 0
   return (
-    <div className={styles.container} style={{cursor: `url('/cursor.png')`}}>
+    <div>
       <Canvas shadowMap colorManagement
         gl={{ alpha: false }}
         camera={{ position: [0, 0, 7], fov: 50, }}
@@ -82,12 +100,10 @@ export default function Home() {
         <Button
           variant = 'secondary'
           sx={{ mb: 2, fontFamily: "Lekton", fontSize: 4, height: 30, border: 0, outline: 'none' }}
-          // onClick={() => (showPass ? authSiteEnter : setShowPass(true))}
-          onClick={() => (enterSite())}
+          onClick={() => (showPass ? authSiteEnter : enterSite())}
         >
           ENTER
         </Button>
-
         {showPass &&
           <>
             <form

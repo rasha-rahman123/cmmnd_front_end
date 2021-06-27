@@ -17,15 +17,15 @@ const contentfulClient = new ContentfulClient({
 function MyApp({ Component, pageProps, articles}) {
 
   return (
-    <ShopProvider>
-      <ContentfulProvider client={contentfulClient}>
-        <ThemeProvider theme={theme}>
-          <Layout>
-          <Component  {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </ContentfulProvider>
-    </ShopProvider>
+    <ContentfulProvider client={contentfulClient}>
+      <ShopProvider>
+          <ThemeProvider theme={theme}>
+            <Layout>
+            <Component  {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+      </ShopProvider>
+    </ContentfulProvider>
   );
 }
 

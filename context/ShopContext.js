@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import './utils'
 import Client from 'shopify-buy'
 import { countTotalLineItems } from './utils';
-import { create } from 'react-test-renderer';
+import { useContentful } from 'react-contentful';
 
 // makes requests
 // changes values in context
@@ -52,18 +52,6 @@ function ShopProvider(props) {
         setIsCartOpen(false)
       }
     }, [checkout])
-
-    // check if the password query is set, if yes allow shop 
-    const isShopOpen = (ps) => {
-      const pw = ps || router.query.pw || '';
-
-      // if (pw === 'creativelabog') { 
-      //   return true;
-      // }
-      // todo: clear query
-      return true;
-      
-    }
 
     const getVariantFromOptions = (options) => { 
       return client.product.helpers.variantForOptions(product, options)
@@ -142,8 +130,41 @@ function ShopProvider(props) {
         const check = await client.checkout.removeLineItems(checkoutId, [lineItemId])
         setCheckout(check);
       }
-    
 
+    // check if the password query is set, if yes allow shop 
+    const {data, error, fetched, loading} = useContentful({
+      contentType: 'password'
+    });
+  
+    if (loading || !fetched) {
+        return <div className="blank"></div>;
+    }
+  
+    if (error) {
+        console.error("error", error);
+        return <div className="blank">error</div>;
+    }
+  
+    if (!data) {
+        return <p>Error leading landing, please try again later</p>;
+    } 
+  
+    const showPass = data.items[0].fields.passwordActive; 
+    const expPW = data.items[0].fields.password;
+
+    const isShopOpen = (ps) => {
+      if(!showPass) { 
+        return true;
+      }
+      const pw = router.query.pw || ps || '';
+      console.log(pw)
+      if (pw === expPW) { 
+        return true;
+      } 
+      return false;
+    }
+
+  
 
     return (
         <ShopContext.Provider value={{
